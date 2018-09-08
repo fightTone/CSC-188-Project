@@ -36,4 +36,11 @@ class Records(db.Model):
 		self.title = title
 		self.text = text
 
+class RecordSchema(ma.Schema):
+    class Meta:
+        fields = ('rec_id','acc_id','title','text','created_date')
+
+record_schema = RecordSchema()
+records_schema = RecordSchema(many=True)
+
 db.create_all()

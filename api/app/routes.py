@@ -14,10 +14,32 @@ def signup():
 
 @app.route('/alluser', methods=['GET'])
 def alluser():
-	jayson = user_viewer()
-	return jayson
+	return user_viewer()
 
 @app.route('/login', methods=['POST'])
 def login():
-	jayson = loginUser()
-	return jayson
+	return loginUser()
+
+@app.route('/addStory', methods=['POST'])
+def addStory():
+	return add_stories()
+
+@app.route('/editStory', methods=['POST'])
+def editStory():
+	return edit_Stories()
+
+@app.route('/editTitle', methods=['POST'])
+def editTitle():
+	return edit_titles()
+
+@app.route('/deleteStory', methods=['POST'])
+def deleteStory():
+	return delete_Stories()
+
+@app.route('/searchStory', methods=['GET'])
+def searchStory():
+	return search_Stories()
+
+@app.route('/myStory',methods=['GET'])
+def myStory():
+	return user_stories()
