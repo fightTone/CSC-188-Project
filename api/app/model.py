@@ -43,4 +43,15 @@ class RecordSchema(ma.Schema):
 record_schema = RecordSchema()
 records_schema = RecordSchema(many=True)
 
+class Images(db.Model):
+    img_id = db.Column(db.Integer, primary_key=True)
+    acc_id = db.Column(db.Integer, db.ForeignKey('user.acc_id'))
+    img_type = db.Column(db.String(50))
+    img = db.Column(db.String(500))
+
+    def __init__(self,acc_id, img_type, img):
+        self.acc_id = acc_id
+        self.img_type = img_type
+        self.img = img
+
 db.create_all()

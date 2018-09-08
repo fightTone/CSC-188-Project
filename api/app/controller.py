@@ -3,6 +3,27 @@ from itsdangerous import TimestampSigner
 from werkzeug.security import generate_password_hash, check_password_hash
 from model import *
 from sqlalchemy import *
+from werkzeug import secure_filename
+from engine_cloudinary import *
+
+
+img_folder = 'app/static/uploads/img/'
+audio_folder = 'app/static/uploads/audio/'
+profile_folder = 'app/static/uploads/profile/'
+
+img_folder_alter = '/static/uploads/img/'
+audio_folder_alter = '/static/uploads/audio/'
+profile_folder_alter = '/static/uploads/profile/'
+
+app_dump = 'app/dumps'
+
+available_extension = set(['png', 'jpg', 'PNG', 'JPG', 'mp3', 'm4a', 'flac', 'aac'])
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in available_extension
+
+
 
 def hello():
 	return jsonify({'msg': "Hello World"})
@@ -151,3 +172,19 @@ def user_stories():
 		return jsonify(schemes.data)
 	else:
 		return itExist
+
+def upload_images():
+	token = request.form['token']
+	itExist = token_checker(token)
+	if itExist == True:
+	    acc_id = request.form['acc_id']
+	    img_type = request.form['img_type']
+	    file1 = request.files['image']
+	    typpe1 = request.form['type1']
+	    tempid = random.randint(1, 200)
+	    
+	    msg = cloudinary_upload(acc_id, img_type, file1,tempid, typpe1, allowed_file, app_dump, Images)
+	    uploaded = Images.query.filter_by(acc_id = request.form['acc_id']).filter_by(img_type =request.form['img_type']).first()
+	    return jsonify({'msg': msg,'id':uploaded.acc_id,'img':uploaded.img})
+	else:
+		itExist

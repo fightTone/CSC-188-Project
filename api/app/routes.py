@@ -1,16 +1,15 @@
 from __init__ import *
 from controller import *
 from model import *
+from engine_cloudinary import *
 
 @app.route('/')
 def index():
-	x = hello()
-	return x
+	return hello()
 
 @app.route('/signup', methods=['POST'])
 def signup():
-	jayson = register()
-	return jayson
+	return register()
 
 @app.route('/alluser', methods=['GET'])
 def alluser():
@@ -43,3 +42,7 @@ def searchStory():
 @app.route('/myStory',methods=['GET'])
 def myStory():
 	return user_stories()
+
+@app.route('/api/v3/image', methods=['POST'])
+def image():
+	return upload_images()
