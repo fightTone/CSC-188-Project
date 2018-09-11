@@ -1,17 +1,21 @@
 from __init__ import *
 from controller import *
 from model import *
-from engine_cloudinary import *
 
 @app.route('/')
 def index():
 	return hello()
 
+@app.route('/sample')
+def sample():
+	return "<h1>Sample</h1>"
+
+
 @app.route('/signup', methods=['POST'])
 def signup():
 	return register()
 
-@app.route('/alluser', methods=['GET'])
+@app.route('/alluser', methods=['POST'])
 def alluser():
 	return user_viewer()
 
@@ -35,11 +39,11 @@ def editTitle():
 def deleteStory():
 	return delete_Stories()
 
-@app.route('/searchStory', methods=['GET'])
+@app.route('/searchStory', methods=['POST'])
 def searchStory():
 	return search_Stories()
 
-@app.route('/myStory',methods=['GET'])
+@app.route('/myStory',methods=['POST'])
 def myStory():
 	return user_stories()
 

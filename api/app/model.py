@@ -54,4 +54,4 @@ class Images(db.Model):
         self.img_type = img_type
         self.img = img
 
-db.create_all()
+# db.create_all()
