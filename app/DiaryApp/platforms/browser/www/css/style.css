@@ -317,7 +317,11 @@ a {
 .login-wrap {
     margin: auto;
     max-width: 525px;
+<<<<<<< HEAD
+    min-height: 550px;
+=======
     min-height: 525px;
+>>>>>>> cfe44223a29f0b8a560b39297629549975099b19
     position: relative;
     background: url(../images/banner.jpg) no-repeat center;
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
@@ -325,6 +329,20 @@ a {
 
 .main_w3agile {
     width: 100%;
+<<<<<<< HEAD
+    height: 130%;
+    position: absolute;
+    padding: 5em;
+    background: rgba(255, 255, 255, 0.83);
+    -webkit-box-shadow: 0px 6px 11px 1px rgba(0, 0, 0, 0.17);
+    -moz-box-shadow: 0px 6px 11px 1px rgba(0, 0, 0, 0.17);
+    box-shadow: 12px -12px 0px 0px rgba(251, 251, 251, 0.24);
+}
+
+.main_w3agile2 {
+    width: 100%;
+=======
+>>>>>>> cfe44223a29f0b8a560b39297629549975099b19
     height: 100%;
     position: absolute;
     padding: 5em;
@@ -400,6 +418,10 @@ a {
     font-size: 1em;
     color: #000;
     outline: none;
+<<<<<<< HEAD
+
+=======
+>>>>>>> cfe44223a29f0b8a560b39297629549975099b19
 }
 
 .login-form .group .button {
