@@ -1,6 +1,9 @@
 from __init__ import *
 import datetime
 
+
+
+
 class User(db.Model):
     acc_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
@@ -35,5 +38,23 @@ class Records(db.Model):
 		self.acc_id = acc_id
 		self.title = title
 		self.text = text
+
+class RecordSchema(ma.Schema):
+    class Meta:
+        fields = ('rec_id','acc_id','title','text','created_date')
+
+record_schema = RecordSchema()
+records_schema = RecordSchema(many=True)
+
+class Images(db.Model):
+    img_id = db.Column(db.Integer, primary_key=True)
+    acc_id = db.Column(db.Integer, db.ForeignKey('user.acc_id'))
+    img_type = db.Column(db.String(50))
+    img = db.Column(db.String(500))
+
+    def __init__(self,acc_id, img_type, img):
+        self.acc_id = acc_id
+        self.img_type = img_type
+        self.img = img
 
 db.create_all()

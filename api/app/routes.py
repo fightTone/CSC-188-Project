@@ -4,20 +4,56 @@ from model import *
 
 @app.route('/')
 def index():
-	x = hello()
-	return x
+	return hello()
+
+@app.route('/sample')
+def sample():
+	return "<h1>Sample</h1>"
+
 
 @app.route('/signup', methods=['POST'])
 def signup():
-	jayson = register()
-	return jayson
+	return register()
 
-@app.route('/alluser', methods=['GET'])
+@app.route('/alluser', methods=['POST'])
 def alluser():
-	jayson = user_viewer()
-	return jayson
+	return user_viewer()
 
 @app.route('/login', methods=['POST'])
 def login():
-	jayson = loginUser()
-	return jayson
+	return loginUser()
+
+@app.route('/addStory', methods=['POST'])
+def addStory():
+	return add_stories()
+
+@app.route('/editStory', methods=['POST'])
+def editStory():
+	return edit_Stories()
+
+@app.route('/editTitle', methods=['POST'])
+def editTitle():
+	return edit_titles()
+
+@app.route('/deleteStory', methods=['POST'])
+def deleteStory():
+	return delete_Stories()
+
+@app.route('/searchStory', methods=['POST'])
+def searchStory():
+	return search_Stories()
+
+@app.route('/myStory',methods=['POST'])
+def myStory():
+	return user_stories()
+
+@app.route('/api/v3/image', methods=['POST'])
+def image():
+	return upload_images()
+
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  return response

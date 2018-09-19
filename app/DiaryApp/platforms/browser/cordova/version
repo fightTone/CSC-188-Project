@@ -20,6 +20,10 @@
 */
 
 // Coho updates this line:
+<<<<<<< HEAD
 var VERSION = "5.0.4";
+=======
+var VERSION = "5.0.3";
+>>>>>>> cfe44223a29f0b8a560b39297629549975099b19
 
 console.log(VERSION);
