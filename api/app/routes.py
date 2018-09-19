@@ -50,3 +50,10 @@ def myStory():
 @app.route('/api/v3/image', methods=['POST'])
 def image():
 	return upload_images()
+
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+  return response

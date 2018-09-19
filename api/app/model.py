@@ -1,6 +1,9 @@
 from __init__ import *
 import datetime
 
+
+
+
 class User(db.Model):
     acc_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
@@ -54,4 +57,4 @@ class Images(db.Model):
         self.img_type = img_type
         self.img = img
 
-# db.create_all()
+db.create_all()
