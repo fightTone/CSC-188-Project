@@ -5,7 +5,7 @@ venv
 *.idea/
 .idea/
 .venv/
-*app/DiaryApp/plugins
-*app/DiaryApp/hooks
-*app/DiaryApp/platforms
-*app/DiaryApp/node_modules
+app/DiaryApp/plugins
+app/DiaryApp/hooks
+app/DiaryApp/platforms
+app/DiaryApp/node_modules
