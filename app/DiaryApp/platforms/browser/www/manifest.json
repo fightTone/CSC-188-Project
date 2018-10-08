@@ -1,10 +1,10 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "DiaryApp",
-  "short_name": "DiaryApp",
+  "name": "Memoire",
+  "short_name": "Memoire",
   "version": "com.phonegap.helloworld",
-  "description": "Hello World sample application that responds to the deviceready event.",
+  "description": "A blank PhoneGap app.",
   "author": "PhoneGap Team",
   "icons": [],
   "start_url": "index.html"

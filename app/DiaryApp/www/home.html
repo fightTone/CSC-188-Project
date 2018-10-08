@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" media="screen, handheld" />
+    <link rel="stylesheet" type="text/css" href="enhanced.css" media="screen and (min-width: 40.5em)" /> -->
+    <link rel="stylesheet" type="text/css" href="css/custome.css" />
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div id="main">
+        <div class="container">
+            <div id="header">
+                <div class="logo">
+                </div>
+                <div class="settings">
+                </div>    
+            </div>
+            <div = "storiescontainer">
+                <div id="storycontainer">
+                    <h1>A Day in Maldives</h1>
+                    <div id="datetimecontainer">
+                        <ul>
+                            <h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">September 16, 2018</h2> 
+
+                            <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2>
+                        </ul>
+                    </div>
+                   <div id="optioncontainer">    
+                            <div id="editbutton">
+                            </div>
+                            <div id="deletebutton">
+                            </div>
+                            <div id="sharebutton">
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            
+        
+        </div>
+    </div>   
+    <div id="footer">
+            <div class="container">
+                <div class="search">
+                </div>
+                <div class="add">
+                </div>
+                
+                <div class="planner">
+                </div>
+                <div class="home">
+                </div>
+            </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>    
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    <script>
+
+        var acc_id = localStorage.getItem('acc_id');
+        var token = localStorage.getItem('token');
+
+
+         $.ajax({
+            url: 'https://vast-woodland-99478.herokuapp.com/myStory',
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify( { "token": token, "acc_id": acc_id  } ),
+            processData: false,
+            success: function( data, textStatus, jQxhr ){
+                
+                alert(data)
+                $('#response pre').html( JSON.stringify( data ) );
+                alert(data);
+                // alert(datatext);
+                
+                
+
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+                alert("error")
+            }
+        });
+
+        // var data = {};
+        // var url = "https://vast-woodland-99478.herokuapp.com/myStory";
+
+        // data.token = localStorage.getItem('token');
+        // var json - JSON.stringify(data);
+
+
+
+        // var xhr = new XMLHttpRequest();
+        // xhr.open("POST", url, true);
+        // xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        // xhr.onload = function(){
+        //     var stories = JSON.parse(xhr.responseText);
+        //     alert(stories);
+        //     // if(xhr.readyState == )
+        // }
+        // xhr.send(json);
+
+
+
+
+
+
+
+
+
+
+        // var token = localStorage.getItem('token');
+        // $.ajax({
+        //     type: 'POST', 
+        //     url: "https://vast-woodland-99478.herokuapp.com/myStory",
+
+        //     data: {token:token},
+
+        //     success: function(response) {
+        //         alert(response)
+        //         var stories = '';
+        //         $.each(data, function(key,value){
+
+        //         })
+        //         stories += '<div id="storycontainer"><h1>A Day in Maldives</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">September 16, 2018</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>'
+        //     }
+
+        // })
+
+
+
+
+
+
+        //     var token = localStorage.getItem('token');
+        //     $.post("https://vast-woodland-99478.herokuapp.com/myStory", { token: token }).done(function(data, status){
+        //         var stories = '';
+        //         $.each(data, function(key,value){
+        //             stories += '<div id="storycontainer"><h1>A Day in Maldives</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">September 16, 2018</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>'
+        //         });
+
+        //         $('#storiescontainer').append(stories);
+        //     });
+        // });
+    </script>
+</body>
+
+</html>
