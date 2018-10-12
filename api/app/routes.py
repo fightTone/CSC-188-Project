@@ -43,9 +43,9 @@ def deleteStory():
 def searchStory():
 	return search_Stories()
 
-@app.route('/myStory',methods=['POST'])
-def myStory():
-	return user_stories()
+@app.route('/myStory/<acc_id>/<token>',methods=['GET'])
+def myStory(acc_id,token):
+	return user_stories(acc_id,token)
 
 @app.route('/api/v3/image', methods=['POST'])
 def image():

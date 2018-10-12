@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+    <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" media="screen, handheld" />
+    <link rel="stylesheet" type="text/css" href="enhanced.css" media="screen and (min-width: 40.5em)" /> -->
+    <link rel="stylesheet" type="text/css" href="css/custome.css" />
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="header">
+            <div class="logo" style="margin: auto; position: relative;">
+            </div>
+            <div class="settings">
+            </div>    
+        </div>
+        
+        <div id= "storiescontainer" style="margin: auto; position: relative;">
+                
+        </div>  
+        
+    </div>   
+    <div id="footer">
+            <div class="container">
+                <div class="search">
+                </div>
+                <div onclick="go_to_add()" class="add">
+                </div>
+                
+                <div class="planner">
+                </div>
+                <div class="home">
+                </div>
+            </div>
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>    
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    <script>
+        function got_to_add(){
+            location = "add.html";
+        }
+
+        var acc_id = localStorage.getItem('acc_id');
+        var token = localStorage.getItem('token');
+        console.log(acc_id);
+        console.log(token);
+        
+
+        // var url  = 'https://vast-woodland-99478.herokuapp.com/myStory';
+        // var xhr  = new XMLHttpRequest()
+        // xhr.open('POST', url, true)
+        // xhr.onload = function () {
+            
+        //     if (xhr.readyState == 4 && xhr.status == "200") {
+        //         var json = JSON.parse(xhr.responseText);
+        //         var story='';
+        //         $.each(json,function(key,value){
+        //             story += '<div id="storycontainer"><h1>'+json.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">September 16, 2018</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
+                      
+        //         });
+        //         $('#storiescontainer').append(story);
+        //     } else {
+        //         alert("error")
+        //     }
+        // }
+        // var json =JSON.stringify({ "token": token, "acc_id": acc_id  });
+        // xhr.send(json);
+
+        $(document).ready(function(){
+            $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
+                var story='';
+
+                $.each(data,function(key,value){
+                    
+                    story += '<div class = "storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">'+value.created_date+'</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
+                      
+                });
+                $('#storiescontainer').append(story);
+            });
+        });
+
+
+
+
+        //  $.ajax({
+        //     url: 'https://vast-woodland-99478.herokuapp.com/myStory',
+        //     dataType: 'json',
+        //     type: 'post',
+        //     contentType: 'application/json',
+        //     data: JSON.stringify({"acc_id": acc_id,"token": token}),
+        //     processData: false,
+        //     success: function( data, textStatus, jQxhr ){
+
+        //         alert(data.data)
+        //     // $.each(data,function(key,value){
+        //     //     alert(textStatus)
+        //     //         story += '<div id="storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">September 16, 2018</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
+                      
+        //     //     });
+        //     //     $('#storiescontainer').append(story);
+                
+                
+
+        //     },
+        //     error: function( jqXhr, textStatus, errorThrown ){
+        //         console.log( errorThrown );
+        //         alert("error")
+        //     }
+        // });
+
+        
+    </script>
+</body>
+
+</html>

@@ -161,10 +161,10 @@ def search_Stories():
 	else:
 		return itExist
 
-def user_stories():
-	data = request.get_json()
-	acc_id = data['acc_id']
-	token = data['token']
+def user_stories(acc_id,token):
+	# data = request.get_json()
+	# acc_id = data['acc_id']
+	# token = data['token']
 	itExist = token_checker(token)
 	if itExist == True:
 		specStories = Records.query.filter_by(acc_id=acc_id).all()

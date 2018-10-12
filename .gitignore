@@ -1,6 +1,5 @@
 *.pyo
 *.pyc
-*.xml
 *.idea/
 .idea/
 .venv/
