@@ -35,8 +35,13 @@
             <div class="container">
                 <div class="search">
                 </div>
-                <div onclick="go_to_add()" class="add">
+                <div href="go_to_add()" class="add">
                 </div>
+                <script>
+                    function go_to_add(){
+                        location = "add.html";
+                    }
+                </script>
                 
                 <div class="planner">
                 </div>
@@ -52,9 +57,7 @@
         app.initialize();
     </script>
     <script>
-        function got_to_add(){
-            location = "add.html";
-        }
+        
 
         var acc_id = localStorage.getItem('acc_id');
         var token = localStorage.getItem('token');
