@@ -13,7 +13,7 @@
         font-family:Courier, monospace;
     }
     body {
-        background:#333 url(https://static.tumblr.com/maopbtg/a5emgtoju/inflicted.png) repeat;        
+        background:#333 url(images/inflicted.png) repeat;        
     }
     #paper {
         color:#FFF;
@@ -42,7 +42,7 @@
         padding-right:100px;
         padding-top:45px;
         padding-bottom:34px;
-        background-image:url(https://static.tumblr.com/maopbtg/E9Bmgtoht/lines.png), url(https://static.tumblr.com/maopbtg/nBUmgtogx/paper.png);
+        background-image:url(images/lines.png), url(images/paper.png);
         background-repeat:repeat-y, repeat;
         -webkit-border-radius:12px;
         border-radius:12px;
@@ -108,7 +108,7 @@
         <div id="paper" style="padding: 2%; margin-top: 22%;" method="get">
 
             <div id="margin">Title: <input id="title" type="text" name="title"></div>
-            <textarea placeholder="Enter something funny." id="text" name="text" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; width: -webkit-fill-available;"></textarea>  
+            <textarea placeholder="Enter something funny." id="text" name="text" rows="4" style="overflow: auto; word-wrap: break-word; resize: none; height: 160px; width: -webkit-fill-available;"></textarea>  
             <br>
             <input id="button" type="submit" onclick="addStory()" value="Save">
             
@@ -135,6 +135,7 @@
                 processData: false,
                 success: function( data, textStatus, jQxhr ){
                     alert(data.msg);
+                    location = "land1.html";
 
                 },
                 error: function( jqXhr, textStatus, errorThrown ){

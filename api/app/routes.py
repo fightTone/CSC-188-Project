@@ -43,6 +43,10 @@ def deleteStory():
 def searchStory():
 	return search_Stories()
 
+@app.route('/viewStory', methods=['POST'])
+def viewStory():
+	return view_Story()
+
 @app.route('/myStory/<acc_id>/<token>',methods=['GET'])
 def myStory(acc_id,token):
 	return user_stories(acc_id,token)

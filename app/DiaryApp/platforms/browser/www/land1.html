@@ -18,6 +18,7 @@
 </head>
 
 <body>
+
     <div id="main">
         <div id="header">
             <div class="logo" style="margin: auto; position: relative;">
@@ -27,15 +28,20 @@
         </div>
         
         <div id= "storiescontainer" style="margin: auto; position: relative;">
-                
-        </div>  
+                 
+        </div>
+        <svg height="100" width="100">
+          <circle  cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="gray" />
+          <div class="planner"></div>
+        </svg>
         
     </div>   
+
     <div id="footer">
             <div class="container">
                 <div class="search">
                 </div>
-                <div href="go_to_add()" class="add">
+                <div onclick="go_to_add()" class="add">
                 </div>
                 <script>
                     function go_to_add(){
@@ -84,6 +90,28 @@
         // }
         // var json =JSON.stringify({ "token": token, "acc_id": acc_id  });
         // xhr.send(json);
+        function pick_story(story_id){
+            $.ajax({
+                url: 'https://vast-woodland-99478.herokuapp.com/viewStory',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({"acc_id": acc_id, "token": token, "story_id": story_id}),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                    localStorage.setItem('title', data.title);
+                    localStorage.setItem('text', data.text);
+                    location = 'view_story.html';
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                    
+                }
+            });
+
+        }
+
+
 
         $(document).ready(function(){
             $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
@@ -91,15 +119,12 @@
 
                 $.each(data,function(key,value){
                     
-                    story += '<div class = "storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">'+value.created_date+'</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
+                    story += '<div onclick = "pick_story('+value.rec_id+')" class = "storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">'+value.created_date+'</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
                       
                 });
                 $('#storiescontainer').append(story);
             });
         });
-
-
-
 
         //  $.ajax({
         //     url: 'https://vast-woodland-99478.herokuapp.com/myStory',

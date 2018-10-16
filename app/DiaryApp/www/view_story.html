@@ -103,47 +103,37 @@
     </style>
 </head>
 <body>
+    
     <div id="wrapper">
+        <nav class="navbar navbar-light bg-light">
+          <button class="glyphicon glyphicon-menu-left" href="land1.html"></button>
+        </nav>
 
         <div id="paper" style="padding: 2%; margin-top: 22%;" method="get">
 
-            <div id="margin">Title: <input id="title" type="text" name="title"></div>
-            <textarea placeholder="Enter something funny." id="text" name="text" rows="4" style="overflow: auto; word-wrap: break-word; resize: none; height: 160px; width: -webkit-fill-available;"></textarea>  
+            <div id="margin">Title: <b id="title" class="tits"></b></div>
+            <div id="text" rows="4" class="info" style="overflow: auto; word-wrap: break-word; resize: none; height: 160px; width: -webkit-fill-available;">
+                
+            </div>  
             <br>
-            <input id="button" type="submit" onclick="addStory()" value="Save">
-            
+ 
         </div>
 
     </div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function(){
-          $('#title').focus();
-            $('#text').autosize();
+
+            var title = localStorage.getItem('title');
+            var text = localStorage.getItem('text');
+            
+            document.getElementById("title").innerHTML = title;
+            document.getElementById("text").innerHTML = text;
+            
         });
-        var acc_id = localStorage.getItem('acc_id');
-        var token = localStorage.getItem('token');
 
-        function addStory(){
 
-            $.ajax({
-                url: 'https://vast-woodland-99478.herokuapp.com/addStory',
-                dataType: 'json',
-                type: 'post',
-                contentType: 'application/json',
-                data: JSON.stringify({"acc_id": acc_id, "token": token, "title": $('#title').val(), "text": $('#text').val()}),
-                processData: false,
-                success: function( data, textStatus, jQxhr ){
-                    alert(data.msg);
-                    location = "land1.html";
 
-                },
-                error: function( jqXhr, textStatus, errorThrown ){
-                    console.log( errorThrown );
-                    alert("error")
-                }
-            });
-        }
     </script>
 
 </body>

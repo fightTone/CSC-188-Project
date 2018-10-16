@@ -161,6 +161,22 @@ def search_Stories():
 	else:
 		return itExist
 
+def view_Story():
+	data = request.get_json()
+	token = data['token']
+	itExist = token_checker(token)
+	if itExist == True:
+		try:
+			acc_id = data['acc_id']
+			story_id = data['story_id']
+			matches = Records.query.filter_by(acc_id=acc_id).filter_by(rec_id = story_id).first()
+			result = record_schema.dump(matches)
+			return jsonify(result.data)
+		except:
+			return jsonify({'error':"Story Does Not Match Any."})
+	else:
+		return itExist
+
 def user_stories(acc_id,token):
 	# data = request.get_json()
 	# acc_id = data['acc_id']
