@@ -1,8 +1,8 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "Memoire",
-  "short_name": "Memoire",
+  "name": "Memoir",
+  "short_name": "Memoir",
   "version": "com.phonegap.helloworld",
   "description": "A blank PhoneGap app.",
   "author": "PhoneGap Team",

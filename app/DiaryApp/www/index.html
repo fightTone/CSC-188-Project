@@ -41,11 +41,11 @@
                 <!-- signin form -->
                 <div class="signin_wthree">
                     
-                        <div class="group" style="margin-top: 50px;">
+                        <div class="group">
                             <label for="email_s" class="label">Email Address</label>
                             <input id="email_s" type="email" class="input" required>
                         </div>
-                        <div class="group" style="margin-top: 30px;">
+                        <div class="group">
                             <label for="pass" class="label">Password</label>
                             <input id="pass" type="password" class="input" data-type="password" required>
                         </div>
@@ -112,7 +112,6 @@
     <!-- script for password match -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script>
-
     function pass(){
 
         $.ajax({
@@ -138,7 +137,7 @@
     }
 
     function login(){
-        alert($('#pass').val())
+        // alert($('#pass').val())
 
         $.ajax({
             url: 'https://vast-woodland-99478.herokuapp.com/login',
@@ -154,7 +153,7 @@
                 $('#response pre').html( JSON.stringify( data ) );
                 alert(data.acc_id);
                 alert(data.token);
-                location = "home.html";
+                location = "land1.html";
                 
 
             },

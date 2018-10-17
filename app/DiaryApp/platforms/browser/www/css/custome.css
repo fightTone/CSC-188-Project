@@ -1,13 +1,33 @@
 body {
 	background-image: url(../images/background-image.png);
-  	background-repeat: no-repeat;
-  	background-size: cover;
-  	left: 0px;
-  	top: 0px;
-  	max-width: 100%;
-  	max-height: 100%;
-  	z-index: 2;
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 0px;
+  top: 0px;
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 2;
+  margin: 0;
 }
+
+
+
+
+header {
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  position: fixed;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  z-index: 100;
+}
+
+header.gray {
+  background: rgb( 61, 61, 61 );
+}
+
 
 #main {
 	background-color: none;
@@ -17,58 +37,62 @@ body {
 
 
 .logo {
- 	background-image: url(../images/logo_01.png);
  	background-repeat: no-repeat;
  	float: left;
- 	margin-top: 10px;
- 	margin-left: 20px;
- 	width :176px;
- 	height: 67px;
+  padding: 15px;
+ 	width :113px;
+ 	height: 31px;
 }
 
+
+
 .settings {
-	background-image: url(../images/settingsbutton.png);
+  background-image: url(../images/settingsbutton.png);
  	background-repeat: no-repeat;
- 	position: fixed;
  	float: right;
  	width : 45px;
  	height: 57px;
  	right: 5px;
- 	top: 0px;
 }
 
 
 
 
-#storycontainer {
+.storycontainer {
   border-radius: 10px;
   background-color: rgb( 214, 214, 214 );
   opacity: 0.851;
-  position: absolute;
-  overflow: auto;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 5px;
+  /*overflow: auto;*/
   top: 100px;
-  left: 45px;
-  right:45px;
+  left: 50%;
+  right:50%;
   min-width: 288px;
   max-height: 100%;
-  height: 109px;
-  z-index: 8;
+  
 }
 
-
+/*.title {
+  text-overflow: ellipsis;
+}*/
 
  h1 {
   font-size: 18px;
+  font-size: 4vw;
   font-family: "Century Gothic";
   color: rgb( 51, 49, 49 );
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
   padding: 15px;
-  margin: auto;
-  left: 98px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  /*left: 98px;*/
   top: 133px;
-  width: 288px;
+  width: 250px;
   height: 15px;
   z-index: 18;
 }
@@ -103,7 +127,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -10px;
+  margin-top: 10px;
 }
 
 
@@ -112,8 +136,10 @@ body {
   background-repeat: no-repeat;
   float: left;
   margin-top: -10px;
-  width: 40px;
-  height: 57px;
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
 }
 
 #deletebutton {
@@ -121,8 +147,10 @@ body {
   background-repeat: no-repeat;
   float: right;
   margin-top: -10px;
-  width: 40px;
-  height: 57px;
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
 }
 
 #sharebutton {
@@ -130,8 +158,10 @@ body {
   background-repeat: no-repeat;
   float: right;
   margin-top: -10px;
-  width: 40px;
-  height: 57px;
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 20px;
+  height:20px;
 }
 
 
@@ -161,9 +191,9 @@ body {
 
 
 .container {
-	padding-left: 40px;
+  display: flex;
+  flex-wrap: wrap;
 }
-
 
 
 
@@ -171,10 +201,9 @@ body {
 .search {
 	background-image: url(../images/searchbutton.png);
 	background-repeat: no-repeat;
-	float: left;
 	margin-top: 15px;
-	padding-left: 20px;
-	padding-right: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
 	width: 38px;
 	height: 46px;
 }
@@ -182,9 +211,8 @@ body {
 .add {
 	background-image: url(../images/addbutton.png);
 	background-repeat: no-repeat;
-	float: left;
-	padding-left: 20px;
-	padding-right: 20px;
+	margin-left: 20px;
+  margin-right: 20px;
 	margin-top: 15px;
 	width: 43px;
 	height: 51px;
@@ -194,9 +222,8 @@ body {
 .planner {
 	background-image: url(../images/plannerbutton.png);
 	background-repeat: no-repeat;
-	float: right;
-	padding-left: 20px;
-	padding-right: 20px;
+	margin-left: 20px;
+  margin-right: 20px;
 	margin-top: 15px;
 	width: 45px;
 	height: 51px;
@@ -205,9 +232,8 @@ body {
 .home {
 	background-image: url(../images/homebutton.png);
 	background-repeat: no-repeat;
-	float: right;
-	padding-left: 20px;
-	padding-right: 20px;
+	margin-left: 20px;
+  margin-right: 20px;
 	margin-top: 15px;
 	width: 45px;
 	height: 51px;
