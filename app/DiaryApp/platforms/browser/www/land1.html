@@ -45,7 +45,13 @@
                 </div>
                 <script>
                     function go_to_add(){
-                        location = "add.html";
+                        try{
+                            localStorage.setItem('edit','false');
+                        }catch{
+                            console.log("error");
+                        }finally{
+                            location = "add.html";
+                        }
                     }
                 </script>
                 
