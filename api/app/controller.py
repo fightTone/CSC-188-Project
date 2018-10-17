@@ -103,7 +103,9 @@ def edit_Stories():
 			recordEdit = Records.query.filter_by(acc_id=acc_id).filter_by(rec_id=rec_id).first()
 			recordEdit.text = dataEdited
 			db.session.commit()
-			return jsonify({'msg':"Successfully Edited."})
+			edited_story = Records.query.filter_by(acc_id=acc_id).filter_by(rec_id=rec_id).first()
+			schemes = record_schema.dump(edited_story)
+			return jsonify(schemes.data)
 		except:
 			return jsonify({'error':"Fail to Edit."})
 	else:
@@ -120,7 +122,7 @@ def edit_titles():
 			rec_id = data['rec_id']
 			titleEdited = data['titleEdited']
 			recordEdit = Records.query.filter_by(acc_id=acc_id).filter_by(rec_id=rec_id).first()
-			recordEdit.text = titleEdited
+			recordEdit.title = titleEdited
 			db.session.commit()
 			return jsonify({'msg':"Successfully Edited."})
 		except:

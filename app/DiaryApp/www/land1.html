@@ -30,10 +30,10 @@
         <div id= "storiescontainer" style="margin: auto; position: relative;">
                  
         </div>
-        <svg height="100" width="100">
+        <!-- <svg height="100" width="100">
           <circle  cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="gray" />
           <div class="planner"></div>
-        </svg>
+        </svg> -->
         
     </div>   
 
@@ -101,6 +101,8 @@
                 success: function( data, textStatus, jQxhr ){
                     localStorage.setItem('title', data.title);
                     localStorage.setItem('text', data.text);
+                    localStorage.setItem('date', data.created_date);
+                    localStorage.setItem('story_id', story_id);
                     location = 'view_story.html';
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
