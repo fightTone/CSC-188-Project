@@ -61,9 +61,9 @@
     </script>
 </head>
 <body>
-    <div id="wrapper">
+    <div id="main">
 
-        <div id="paper" style="padding: 2%; margin-top: 22%;" method="get">
+        <div id="addStoryContainer" method="get">
 
             <div id="margin">Title: <input id="title" type="text" name="title"></div>
             <div id="textEditor">
@@ -89,25 +89,26 @@
                         }
                     </script>
                   </select>
+                  <button id="undoButton" title="Undo the previous action">&larr;</button>
+                  <button id="redoButton" title="Redo">&rarr;</button>
                   <input type="color" id="fontColorButton" title="Font Color">
                   <input type="color" id="highlightButton" title="
                   Highlight">
                   
                 
-                <button id="undoButton" title="Undo the previous action">&larr;</button>
-                <button id="redoButton" title="Redo">&rarr;</button>
-                <img src="images/savebutton.png" alt="Save Button" style="width: 20px; height: 20px;">  
+                
+                <!-- <img src="images/savebutton.png" alt="Save Button" style="width: 20px; height: 20px;">   -->
                 </div>
                 <div id="richTextArea">
                     <iframe id="theWYSIWYG" name="theWYSIWYG" frameborder="0"></iframe>
                 </div>       
             </div>
             <br>
-            <!-- <input id="button" type="submit" onclick="addStory()" value="Save"> -->
             
         </div>
-
     </div>
+     <input id="button" type="submit" onclick="addStory()" value="Save">
+            
      <!-- Footbar section -->
     <div id="footer">
             <div class="container">
