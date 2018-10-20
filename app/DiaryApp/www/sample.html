@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<a id="btn" onclick="register()"></a>
+</body>
+<script src="js/jquery-3.3.1.min.js"></script> 
+<script>
+	// ____________________________________________GET_________________________________________________
+	$(document).ready(function(){
+            $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
+                var story='';
+
+                $.each(data,function(key,value){
+                    
+                    story += '<div onclick = "pick_story('+value.rec_id+')" class = "storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">'+value.created_date+'</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
+                      
+                });
+                $('#storiescontainer').append(story);
+            });
+        });
+	//_______________________________________________________________________________________________________
+
+	//__________________________________________POST_________________________________________________________
+	function registerUser(){
+        var uname = $('#username').val();
+        var pass = $('#password').val();
+        $.ajax({
+
+            
+            url: 'https://wma-188.herokuapp.com/api/register',
+            dataType: 'json',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify({"username": uname, "password": pass}),
+            processData: false,
+            success: function( data, textStatus, jQxhr ){
+                var message = data.msg;
+                document.getElementById('heading').html = message;
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log( errorThrown );
+                
+            }
+        });
+
+    }
+    //________________________________________________________________________________________________________
+
+</script>
+
+</html>

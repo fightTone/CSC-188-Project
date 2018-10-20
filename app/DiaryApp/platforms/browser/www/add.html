@@ -208,7 +208,7 @@
             <div id="margin">Title: <input id="title" type="text" name="title"></div>
             <div style="margin-bottom: 5%; ">
                 <img id="blah" src="images/diary.jpg" alt="Girl in a jacket" style="width: 100%;height: 50%;">
-                <!-- <img id="blah" src="#" alt="your image" style="height: 15%; width: 10%; font-size: 20px;" /><br><br> -->
+
                 <input class="navbar-btn btn btn-gradient-blue" style="width: -webkit-fill-available;" type='file' id="imgInp" name="image" src="#" />
                 <!-- <a class="navbar-btn btn btn-gradient-blue" style="width: -webkit-fill-available;">
                     <span class="glyphicon glyphicon-edit"></span>
@@ -216,19 +216,19 @@
             </div>
             <textarea placeholder="Enter something funny." id="text" name="text" rows="4" style="overflow: auto; word-wrap: break-word; resize: none; height: -webkit-fill-available; width: -webkit-fill-available;"></textarea>  
             <br>
-            <input class="btn btn-gradient-blue" style="float: right; height: 40px; width: -webkit-fill-available;" type="submit" onclick="addStory()" value="Save">    
+            <input class="btn btn-gradient-blue" style="float: right; height: 40px; width: -webkit-fill-available;" type="submit" onclick="addStory();" value="Save">    
         </div>
     </div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script>
-                function readURL(input) {
+        function readURL(input) {
           if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function(e) {
               $('#blah').attr('src', e.target.result);
               var img_source =document.getElementById("imgInp").getAttribute('src');
-              document.getElementById('get_src').innerHTML = img_source;
+              // document.getElementById('get_src').innerHTML = img_source;
               // var img_source =document.getElementById("blah").getAttribute('src');
               // document.getElementById('get_src').innerHTML = img_source;
               
@@ -242,18 +242,81 @@
         $("#imgInp").change(function() {
           readURL(this);
         });
+
+        function formCreate(acc_id, token, filetype, story_id, fileVal){
+            var form = new FormData();
+            form.append('acc_id', acc_id);
+            form.append('token', token);
+            form.append('img_type',filetype);
+            form.append('story_id',story_id);
+            form.append('image', fileVal);             
+            return form;
+        }
+
+
+
         var acc_id = localStorage.getItem('acc_id');
         var token = localStorage.getItem('token');
         var edit = localStorage.getItem('edit');
         var rec_id = localStorage.getItem('story_id');
+
+
+
+        function uploadImage(story_id){
+            alert("im in");
+               
+            $.ajax({
+              type: 'POST',
+                  url: 'https://vast-woodland-99478.herokuapp.com/api/v3/image',
+                  data: formCreate(acc_id, token, 'image', story_id, $('input[name="image"]')[0].files[0]),
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  async: false,
+                  success: function(response) {
+                    alert("asdfasdfasdfasdfa");
+                    if(response.msg=='ok'){
+
+                        localStorage.setItem('imahe',response.img);
+
+                      // alert(response.id+" "+response.img);
+                                          
+                    }
+                    else{
+                        alert('error');
+                      console.log(response.msg);
+                      alert(response.msg);
+                    }
+                  },
+          });
+
+        }
+
         
         if(edit == 'true'){
             
             var title = localStorage.getItem('edit_title');
             var text = localStorage.getItem('edit_text');
+            var pic = document.getElementById('blah');
             document.getElementById("title").value = title;
             document.getElementById("text").value = text;
+            
+            $.ajax({
+                url: 'https://vast-woodland-99478.herokuapp.com/my_pics',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({"acc_id": acc_id, "token": token, "story_id": rec_id}),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                    pic.setAttribute('src', data.img);        
 
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                    
+                }
+            });
 
 
         }else{
@@ -273,6 +336,8 @@
                     data: JSON.stringify({"acc_id": acc_id, "token": token, "rec_id": rec_id, "titleEdited": $('#title').val()}),
                     processData: false,
                     success: function( data, textStatus, jQxhr ){
+                        
+                        uploadImage(rec_id);
                         alert("Successfully Edited");
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
@@ -311,8 +376,9 @@
                     data: JSON.stringify({"acc_id": acc_id, "token": token, "title": $('#title').val(), "text": $('#text').val()}),
                     processData: false,
                     success: function( data, textStatus, jQxhr ){
-                        alert(data.msg);
-                        location = "land1.html";
+                        alert("story_id is "+data.id);
+                        uploadImage(data.id);
+                        // location = "land1.html";
 
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
@@ -322,6 +388,8 @@
                 });
             }
         }
+
+
 
 
     </script>

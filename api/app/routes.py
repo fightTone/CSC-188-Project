@@ -55,6 +55,10 @@ def myStory(acc_id,token):
 def image():
 	return upload_images()
 
+@app.route('/my_pics', methods=['POST'])
+def myimage():
+	return my_images()
+
 @app.after_request
 def after_request(response):
   response.headers.add('Access-Control-Allow-Origin', '*')

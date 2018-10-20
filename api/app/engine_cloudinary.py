@@ -14,11 +14,11 @@ from model import *
 #then after the upload is successful, the temporary directory that was made will be remove from the app folder
 
 
-def cloudinary_upload(acc_id, img_type, file1, tempid, type1, allowed_file, curr_folder, modelClass):
+def cloudinary_upload(acc_id, img_type, story_id, file1, tempid, allowed_file, curr_folder, modelClass):
 	cloudinary.config(
-		cloud_name = 'dli6inpmi',
-		api_key = '658969912467299',
-		api_secret = 'tRv2sUSUEEpNuNigtFTWrWKJFnQ'
+		cloud_name = 'dguxdl3rn',
+		api_key = '633667726822574',
+		api_secret = 'JBkCZKOtGKamVmvLYMDGlU1zk3k'
 	)
 
 	#to handle files that are not image by  default
@@ -46,13 +46,13 @@ def cloudinary_upload(acc_id, img_type, file1, tempid, type1, allowed_file, curr
 
 	
 
-		exist = Images.query.filter_by(acc_id = acc_id).filter_by(img_type = img_type).first()
+		exist = Images.query.filter_by(acc_id = acc_id).filter_by(story_id = story_id).first()
 
 		if exist:
 			
 			exist.img = uploading1['url']
 		else:
-			instance_ = modelClass(acc_id, img_type, img = uploading1['url'],)
+			instance_ = modelClass(acc_id, img_type, story_id, img = uploading1['url'],)
 			db.session.add(instance_)
 			
 		db.session.commit()

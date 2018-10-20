@@ -1,4 +1,5 @@
 import datetime
+import random
 from itsdangerous import TimestampSigner
 from werkzeug.security import generate_password_hash, check_password_hash
 from model import *
@@ -85,7 +86,7 @@ def add_stories():
 			story = Records(acc_id = acc_id, title = title, text=text)
 			db.session.add(story)
 			db.session.commit()
-			return jsonify({'msg':"Successfully added."})
+			return jsonify({'id': story.rec_id})
 		except:
 			return jsonify({'error':"Fail to add."})
 	else:
@@ -196,13 +197,28 @@ def upload_images():
 	itExist = token_checker(token)
 	if itExist == True:
 	    acc_id = request.form['acc_id']
+	    story_id = request.form['story_id']
 	    img_type = request.form['img_type']
 	    file1 = request.files['image']
-	    typpe1 = request.form['type1']
 	    tempid = random.randint(1, 200)
 	    
-	    msg = cloudinary_upload(acc_id, img_type, file1,tempid, typpe1, allowed_file, app_dump, Images)
+	    msg = cloudinary_upload(acc_id, img_type, story_id, file1,tempid, allowed_file, app_dump, Images)
 	    uploaded = Images.query.filter_by(acc_id = request.form['acc_id']).filter_by(img_type =request.form['img_type']).first()
 	    return jsonify({'msg': msg,'id':uploaded.acc_id,'img':uploaded.img})
 	else:
+		itExist
+
+def my_images():
+	data = request.get_json()
+	token = data['token']
+	acc_id = data['acc_id']
+	story_id = data['story_id']
+	itExist = token_checker(token)
+	if itExist == True:
+		print"_________________________SUCCESS_________________________________"
+		image = Images.query.filter_by(acc_id = acc_id).filter_by(story_id = story_id).first()
+		result = image_schema.dump(image)
+		return jsonify(result.data)
+	else:
+		print "++++++++++++++++++++++++++++++++ERRROR++++++++++++++++++++++++++++++++"
 		itExist

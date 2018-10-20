@@ -213,6 +213,8 @@
                     </a>
                 </div>
             </div>
+            <img id="blah" src="images/diary.jpg" alt="Girl in a jacket" style="width: 100%;height: 50%; margin-bottom: 5%;">
+
             <div id="text" rows="4" class="info" style="overflow: auto; word-wrap: break-word; resize: none; width: -webkit-fill-available; height: max-content;">
                 
             </div>  
@@ -231,11 +233,31 @@
         var text = localStorage.getItem('text');
         var date = localStorage.getItem('date');
         
-
+        var pic = document.getElementById('blah');
+        
+        
+        
         $(document).ready(function(){ 
             document.getElementById("title").innerHTML = title;
             document.getElementById("text").innerHTML = text;
             document.getElementById("date").innerHTML = date;
+            
+            $.ajax({
+                url: 'https://vast-woodland-99478.herokuapp.com/my_pics',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({"acc_id": acc_id, "token": token, "story_id": story_id}),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                    pic.setAttribute('src', data.img);        
+
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                    
+                }
+            });
             
         });
 
