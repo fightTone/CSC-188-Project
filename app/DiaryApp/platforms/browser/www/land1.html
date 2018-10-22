@@ -18,22 +18,30 @@
 </head>
 
 <body>
+    <!-- <div id="header">
+        <div class="container"></div>
+        
+    </div> -->
 
-    <div id="main">
-        <div id="header">
+    <div id="main" style="margin-bottom: 70px;">
+    <!--     <div id="header">
             <div class="logo" style="margin: auto; position: relative;">
             </div>
             <div class="settings">
             </div>    
-        </div>
+        </div> -->
         
         <div id= "storiescontainer" style="margin: auto; position: relative;">
                  
         </div>
-        <!-- <svg height="100" width="100">
-          <circle  cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="gray" />
-          <div class="planner"></div>
-        </svg> -->
+<!-- 
+        <a href="add.html">
+         <svg class="svg" width=100 height=100>
+             <circle cx=50 cy=50 r=25></circle>    
+                <i class="icon-check"></i>
+        </svg>
+        </a>  
+         -->
         
     </div>   
 
@@ -107,7 +115,12 @@
                 success: function( data, textStatus, jQxhr ){
                     localStorage.setItem('title', data.title);
                     localStorage.setItem('text', data.text);
-                    localStorage.setItem('date', data.created_date);
+
+                    var dateString = data.created_date;
+                    var datcut = new Date(dateString).toUTCString();
+                    var date_split = datcut.split(' ').slice(0, 5).join(' ');
+
+                    localStorage.setItem('date', date_split);
                     localStorage.setItem('story_id', story_id);
                     location = 'view_story.html';
                 },
@@ -126,8 +139,11 @@
                 var story='';
 
                 $.each(data,function(key,value){
-                    
-                    story += '<div onclick = "pick_story('+value.rec_id+')" class = "storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">'+value.created_date+'</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
+                    var dateString = value.created_date;
+                    var datcut = new Date(dateString).toUTCString();
+                    var date_split = datcut.split(' ').slice(0, 4).join(' ');
+                    var time_split = datcut.split(' ').slice(5).join(' ');
+                    story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
                       
                 });
                 $('#storiescontainer').append(story);
