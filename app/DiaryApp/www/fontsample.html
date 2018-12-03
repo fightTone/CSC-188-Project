@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sample</title>
+</head>
+<body>
+	<h1>YOOOOOOOOOOOOOO!!!!!</h1>
+	<input id="font" type="text" name="font">
+
+	<button id="submit" >send request</button>
+</body>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+          
+    </script>
+<script>
+	
+	$( "#submit" ).click(function() {
+		var acc_id = localStorage.getItem('acc_id');
+		var token = localStorage.getItem('token');
+		$.ajax({
+	        url: 'https://vast-woodland-99478.herokuapp.com/fonts',
+	        dataType: 'json',
+	        type: 'post',
+	        contentType: 'application/json',
+	        data: JSON.stringify({"acc_id": acc_id, "token": token, "font": $('#font').val()}),
+	        processData: false,
+	        success: function( data, textStatus, jQxhr ){
+	            console.log(data);
+	        },
+	        error: function( jqXhr, textStatus, errorThrown ){
+	            console.log( errorThrown );
+	            alert("error")
+	        }
+	    });
+	});	
+</script>
+</html>
