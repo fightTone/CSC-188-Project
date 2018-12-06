@@ -23,8 +23,8 @@
             
               
               
-                <a href="land1.html" type="button" class="navbar-btn btn btn-gradient-red" >< Back</a>
-              
+                <a href="land1.html" type="button" class="navbar-btn btn btn-gradient-red">< Back</a>
+                 <a ><input type="date" name="bday" style="padding: 2px; margin-left: 40%;"></a>
             
           </div>
         </nav>
@@ -243,15 +243,17 @@
             document.getElementById("title").value = " ";
             document.getElementById("editor-text-box").value = " ";
         }
-          $( "#submit" ).click(function() {
-            var fnt = $('#fontFamily').val()+","+$('#textColor').val()+","+$('#fontSize').val()+","+$('#parStyle').val()+","+$('#bold').val()+","+$('#italic').val()+","+$('#underline').val()+","+$('#strikethrough').val();
-
+          function fontss(){
+            var fnt = [$('#fontFamily').val()+","+$('#textColor').val()+","+$('#fontSize').val()+","+$('#parStyle').val()+","+$('#bold').val()+","+$('#italic').val()+","+$('#underline').val()+","+$('#strikethrough').val()];
+            
+            alert(fnt)
+            console.log(fnt)
             $.ajax({
                   url: 'https://vast-woodland-99478.herokuapp.com/fonts',
                   dataType: 'json',
                   type: 'post',
                   contentType: 'application/json',
-                  data: JSON.stringify({"acc_id": acc_id, "token": token, "font": $('#fnt').val()}),
+                  data: JSON.stringify({"acc_id": acc_id, "token": token, "font": fnt}),
                   processData: false,
                   success: function( data, textStatus, jQxhr ){
                     alert('success');
@@ -262,9 +264,9 @@
                       alert("error")
                   }
               });
-          });      
+          }      
    
-        function addStory(){
+        $( "#submit" ).click(function() {
             if(edit == 'true'){
                     $.ajax({
                     url: 'https://vast-woodland-99478.herokuapp.com/editTitle',
@@ -304,16 +306,18 @@
 
             else{
 
+
                 $.ajax({
                     url: 'https://vast-woodland-99478.herokuapp.com/addStory',
                     dataType: 'json',
                     type: 'post',
                     contentType: 'application/json',
-                    data: JSON.stringify({"acc_id": acc_id, "token": token, "title": $('#title').val(), "text": $('#editor-text-box').html()}),
+                    data: JSON.stringify({"acc_id": acc_id, "token": token, "title": $('#title').val(), "text": $('#editor-richText-box').val()}),
                     processData: false,
                     success: function( data, textStatus, jQxhr ){
                         alert(data.msg);
-                        location = "land1.html";
+                        fontss();
+                        // location = "land1.html";
 
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
@@ -322,7 +326,7 @@
                     }
                 });
             }
-        }
+        });
 
 $(document).ready(function(){
   // Call iFrameReady function

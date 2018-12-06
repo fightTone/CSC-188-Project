@@ -229,8 +229,8 @@ header.gray {
   height: 48px;
 }
 
-.home {
-  background-image: url(../images/home.png);
+.add {
+  background-image: url(../images/add.png);
   background-repeat: no-repeat;
   margin-left: 25px;
   margin-right: 25px;
