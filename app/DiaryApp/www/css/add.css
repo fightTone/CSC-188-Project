@@ -259,6 +259,7 @@ body {
   border: 1px solid #1d5aa3;
   font-weight: bold;
   border-radius: 5px;
+  position: absolute;
   
   &:hover {
     background-color: #3a3a3a;
@@ -327,6 +328,7 @@ body {
   display: inline-block;
   margin: 0 0px;
   margin-left: 0;
+  z-index: 1;
   
   &:hover {
     cursor: pointer;

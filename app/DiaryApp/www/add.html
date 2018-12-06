@@ -19,17 +19,11 @@
       <div class="row">
         <nav class="navbar navbar-inverse" role="navigation" style="position: fixed; width: -webkit-fill-available;">
           <div class="container">
-
-            
-              
-              
-                <a href="land1.html" type="button" class="navbar-btn btn btn-gradient-red">< Back</a>
-                 <a ><input type="date" name="bday" style="padding: 2px; margin-left: 40%;"></a>
-            
+                <a href="land1.html" type="button"><img src="../images/back.png"></a>
+                 <a style="margin-left: 30%; color: greenyellow; font-weight: bold;">Date: </a><input type="date" name="bday" style="margin-left: 2%; padding: 5px; border-radius: 5px; background-color: #333; color: greenyellow;">
           </div>
         </nav>
-      
-    </div>
+      </div>
 
 
     <div id="wrapper">
@@ -37,7 +31,7 @@
         <div id="paper" style="padding: 2%; margin-top: 15%;" method="get">
             <div id="margin">Title: <input id="title" type="text" name="title"></div>
             <div style="margin-bottom: 5%; ">
-                <img id="blah" src="images/diary.jpg" alt="Girl in a jacket" style="width: 100%;height: 20%;">
+                <img id="blah" src="images/diary.jpg" alt="Girl in a jacket" style="width: 100%; height: 20%;">
                 <!-- <img id="blah" src="#" alt="your image" style="height: 15%; width: 10%; font-size: 20px;" /><br><br> -->
                 <input class="navbar-btn btn btn-gradient-blue" style="width: -webkit-fill-available;" type='file' id="imgInp" name="image" src="#" />
                 <!-- <a class="navbar-btn btn btn-gradient-blue" style="width: -webkit-fill-available;">
@@ -47,7 +41,7 @@
           </div>
         </div>
             <!-- <textarea placeholder="Enter something funny." id="text" name="text" rows="4" style="overflow: auto; word-wrap: break-word; resize: none; height: -webkit-fill-available; width: -webkit-fill-available;"></textarea> --> 
-<div class="wrapper" style="overflow: auto; word-wrap: break-word; resize: none; height: -webkit-fill-available; width: -webkit-fill-available;">
+<div class="wrapper" style="overflow: auto; word-wrap: break-word; resize: none; height: auto; width: auto;">
     <form name="wc-richTextEditor" id="wc-richTextEditor-form" class="wc-richTextEditor" action="#" method="post">
 
     <!-- Editor Control Box -->
@@ -56,7 +50,7 @@
       <!-- Font Family -->
       <div class="rte editor button-group" id="fontFamilyGroup">
         <div class="rte editor dropdown-label"><i class="fa fa-fw fa-font"></i></div>
-        <select class="rte dropdown editor" id="fontFamily" title="Font Family"><i class="fa fa-fw fa-font"></i>
+        <select class="rte dropdown editor" id="fontFamily" title="Font Family" style="position: initial;"><i class="fa fa-fw fa-font"></i>
           <option value="Arial, Helvetica, sans-serif" style="font-family: Arial, Helvetica, sans-serif">Arial</option>
           <option value="'Arial Black', Gadget, sans-serif" style="font-family: 'Arial Black', Gadget, sans-serif">Arial Black</option>
           <option value="'Times New Roman', serif" style="font-family: 'Times New Roman">Times New Roman</option>
@@ -72,7 +66,7 @@
       <!-- Header Style -->
       <div class="rte editor button-group" id="parStyleGroup">
         <div class="rte editor dropdown-label"><i class="fa fa-fw fa-header"></i></div>
-        <select class="rte dropdown editor" id="parStyle" title="Paragraph Style"><i class="fa fa-fw fa-font"></i>
+        <select class="rte dropdown editor" id="parStyle" title="Paragraph Style" style="position: initial;"><i class="fa fa-fw fa-font"></i>
           <option value="h1" style="font-size: 2em; font-style: bold;" id="heading1">Heading 1</option>
           <option value="h2" style="font-size: 1.75em; font-style: bold;" id="heading2">Heading 2</option>
           <option value="h3" style="font-size: 1.5em; font-style: bold;">Heading 3</option>
@@ -86,7 +80,7 @@
       <!-- Font Size -->
       <div class="rte editor button-group" id="textSizeGroup">
         <div class="rte editor dropdown-label"><i class="fa fa-fw fa-text-height"></i></div>
-        <select class="rte dropdown editor" id="fontSize" title="Font Size" onclick=""><i class="fa fa-fw fa-font"></i>
+        <select class="rte dropdown editor" id="fontSize" title="Font Size" style="position: initial;" onclick=""><i class="fa fa-fw fa-font"></i>
           <option value="1" size="1">1</option>
           <option value="2" size="2">2</option>
           <option value="3" size="3">3</option>
@@ -100,7 +94,7 @@
       <!-- Font Color -->
       <div class="row" id="textColorGroup">
         <div class="rte editor dropdown-label"><i class="fa fa-fw fa-pencil"></i></div>
-        <select class="rte dropdown editor" id="textColor" style="margin-left: 5%;" title="Text Color" onclick=""><i class="fa fa-fw fa-font"></i>
+        <select class="rte dropdown editor" id="textColor" style="margin-left: 5%; position: initial;" title="Text Color" onclick=""><i class="fa fa-fw fa-font"></i>
           <!--<option value="#eb5e6c" style="background-color: #eb5e6c; color: black;">Pig</option>-->
           <option value="#eb2538" data-textcolor="white" style="background-color: #eb2538; color: white;">Scarlet</option>
           <option value="#be1e2d" data-textcolor="white" style="background-color: #be1e2d; color: white;">Crimson</option>
@@ -181,7 +175,7 @@
     
 
     <div>
-    <input id="submit" class="btn btn-gradient-blue" style="float: right; height: 40px; width: -webkit-fill-available;" type="submit"  value="Save">    
+    <input id="submit" class="btn btn-gradient-blue" style="float: right; height: 40px; margin-top: 5%; margin-bottom: 5%; width: -webkit-fill-available;" type="submit"  value="Save">    
     </div>  
     <!-- Submit Content -->
    <!--  <a class="rte button main" id="submit" title="Submit" onclick="submitContent()">Save <i class="fa fa-fw fa-check button"></i></a> -->

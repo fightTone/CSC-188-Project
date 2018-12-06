@@ -23,9 +23,14 @@
     <div id="main">
         <header>
             <nav>
-                <a href="#" class="notification"><img src="../images/logout.png"></a>
+                <a onclick="logout()" class="logout"><img src="../images/logout.png"></a>
                 <a href="#" class="logo"><img src="../images/newlogo2.png"></a>
-                    
+                <script>
+                    function logout(){
+                     localStorage.clear();
+                     location = "index.html";
+                    }
+                </script>    
                 
             </nav>
         </header>
@@ -47,7 +52,7 @@
 <div id="footer">
             <div class="container">
                 
-                <div class="search">
+                <div class="search" data-toggle="modal" data-target="#search">
                 </div>
                 <script>
                     function go_to_add(){
@@ -61,11 +66,11 @@
                     }
                 </script>
 
-                <div class="add" onclick="go_to_add()">
-                </div>
                 <div id="cssd" class="planner">
                 </div>
                 <div class="share">
+                </div>
+                <div class="add" onclick="go_to_add()">
                 </div>
                 <!-- <div onclick="myFunction()" class="settings"></div>
                         <div id="myDropdown" class="dropdown-content">
@@ -210,6 +215,36 @@
 
         
     </script>
+
+    <div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright"></span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
+    </div>
+  </div>
+
+<!-- { raw } -->
+<div class="modal fade" id="authentication" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close pull-right " data-dismiss="modal">&times;</button>
+           </div>
+          <h4 class="modal-title w3-center">Please enter your password</h4>
+          <div class="modal-body">
+          <input type="password" id="password" ng-value="password" class="form-control mb-3" placeholder="Password" style="width:80%; margin-left: 11%;"><br>
+          <button type="button" onclick="checkpass()" class="btn btn-primary" style="margin-left: 35%;width: 25%;background-color:#8eb5e0;  color: white;font-size: 95%; border: none; border-radius: 6px;">SUBMIT</button>
+   </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </body>
 
 </html>
