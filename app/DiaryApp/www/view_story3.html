@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Write a Story</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        * {
+      outline:none;
+        border:none;
+        margin:0px;
+        padding:0px;
+        font-family:Courier, monospace;
+    }
+    body {
+        background:#333 url(images/inflicted.png) repeat;
+               
+    }
+    #paper {
+        color:#FFF;
+        font-size:20px;
+    }
+    #margin {
+        margin-left:12px;
+        margin-bottom:20px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none; 
+    }
+    #text {
+        width:500px;
+        overflow:hidden;
+        background-color:#FFF;
+        color:#222;
+        font-family:Courier, monospace;
+        font-weight:normal;
+        font-size:24px;
+        resize:none;
+        line-height:40px;
+        padding-left:100px;
+        padding-right:100px;
+        padding-top:45px;
+        padding-bottom:34px;
+        background-image:url(images/lines.png), url(images/paper.png);
+        background-repeat:repeat-y, repeat;
+        -webkit-border-radius:12px;
+        border-radius:12px;
+        -webkit-box-shadow: 0px 2px 14px #000;
+        box-shadow: 0px 2px 14px #000;
+        border-top:1px solid #FFF;
+        border-bottom:1px solid #FFF;
+    }
+    #title {
+        background-color:transparent;
+        border-bottom:3px solid #FFF;
+        color:#FFF;
+        font-size:20px;
+        font-family:Courier, monospace;
+        height:28px;
+        font-weight:bold;
+        width:220px;
+    }
+    #button {
+        cursor:pointer;
+        margin-top:20px;
+        float:right;
+        height:40px;
+        padding-left:24px;
+        padding-right:24px;
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight:bold;
+        font-size:20px;
+        color:#FFF;
+        text-shadow: 0px -1px 0px #000000;
+        -webkit-border-radius:8px;
+        border-radius:8px;
+        border-top:1px solid #FFF;
+        -webkit-box-shadow: 0px 2px 14px #000;
+        box-shadow: 0px 2px 14px #000;
+        background-color: #62add6;
+        background-image:url(https://static.tumblr.com/maopbtg/ZHLmgtok7/button.png);
+        background-repeat:repeat-x;
+    }
+    #button:active {
+        zoom: 1;
+        filter: alpha(opacity=80);
+        opacity: 0.8;
+    }
+    #button:focus {
+        zoom: 1;
+        filter: alpha(opacity=80);
+        opacity: 0.8;
+    }
+    #wrapper {
+        width:auto;
+        height:auto;
+        margin-left:auto;
+        margin-right:auto;
+        
+        margin-bottom:100px;
+    }
+    @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
+[am-LatoSans] {
+  font-family: 'Lato', sans-serif;
+}
+[am-TopLogo] {
+    max-height: 70px;
+    max-width: 210px;
+    margin: 12px 11px;
+}
+[am-CallNow] {
+    font-weight: 200;
+    color: #333;
+    vertical-align: middle;
+    line-height: 35px;
+    font-size: 19px;
+    padding-right: 8px;
+}
+/*
+  Relevant styles below
+*/
+.topper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.navbar.navbar-inverse {
+  background-image: linear-gradient(#9f9f9f, #535353 3%, #1f1f1f 17%, #212121 49%, #191919 89%, #000000 100%);
+  border-top: 1px inset rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  
+}
+
+.navbar .navbar-nav > li > a {
+  color: #d1d1d1;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+  text-shadow: 0px -1px black, 0px 1px rgba(255, 255, 255, 0.25);
+  line-height: 18px;
+}
+
+.navbar .navbar-nav > li.active {
+  color: #f8f8f8;
+  background-color: #080808;
+  box-shadow: inset 0px -28px 23px -21px rgba(255, 255, 255, 0.15);
+  border-left: 1px solid #2A2A2A;
+  border-right: 1px solid #272727;
+}
+
+.btn.btn-gradient-blue {
+  background-color: #0c5497 !important;
+  background-image: -webkit-linear-gradient(top, #127bde 0%, #072d50 100%);
+  background-image: -o-linear-gradient(top, #127bde 0%, #072d50 100%);
+  background-image: linear-gradient(to bottom, #127bde 0%, #072d50 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff127bde', endColorstr='#ff072d50', GradientType=0);
+  border-color: #072d50 #072d50 #0c5497;
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(31, 31, 31, 0.29);
+  -webkit-font-smoothing: antialiased;
+}
+.btn.btn-gradient-red {
+  background-color: #ec0808 !important;
+  background-image: -webkit-linear-gradient(top, #f62b2b, #d20202);
+  background-image: -o-linear-gradient(top, #f52b2b, #d20202);
+  background-image: linear-gradient(to bottom, #f62b2b, #d20202);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff127bde', endColorstr='#ff072d50', GradientType=0);
+  border-color: #6b0404 #610303 #e85050;
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(31, 31, 31, 0.29);
+  -webkit-font-smoothing: antialiased;
+}
+    </style>
+</head>
+<body>
+    
+    <div id="wrapper">
+        <div class="container">
+          <!-- Topper w/ logo -->
+          
+          <!-- Navigation -->
+          <div class="row">
+            <nav class="navbar navbar-inverse" role="navigation" style=" position: fixed; width: -webkit-fill-available;>
+              <div class="container">
+                  
+                    <a href="theme3.html" type="button" class="navbar-btn btn btn-gradient-red" style="margin-left: 8px;">< Back</a>
+                    <b id="date" style="color: aquamarine;"></b>
+
+              </div>
+            </nav>
+          </div>
+        </div>
+
+        <div id="paper" style="padding: 1%; margin-top: 22%; overflow: auto;" method="get">
+            
+
+            <div id="margin">Title: <b id="title" class="tits"></b>
+                <div style="float: right;">
+                    <a onclick="edit_story()" class="navbar-btn btn btn-gradient-blue">
+                      <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+
+                    <a onclick="delete_story()" class="navbar-btn btn btn-gradient-red" style="margin : auto;">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                </div>
+            </div>
+            <img id="blah" src="images/diary.jpg" alt="Girl in a jacket" style="width: 100%;height: 50%; margin-bottom: 5%;">
+
+            <div id="text" rows="4" class="info" style="overflow: auto; word-wrap: break-word; resize: none; width: -webkit-fill-available; height: max-content;">
+                
+            </div>  
+            <br>
+ 
+        </div>
+
+    </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        var acc_id = localStorage.getItem('acc_id');
+        var token = localStorage.getItem('token');
+        var story_id = localStorage.getItem('story_id');
+        var title = localStorage.getItem('title');
+        var text = localStorage.getItem('text');
+        var date = localStorage.getItem('date');
+        
+        var pic = document.getElementById('blah');
+        
+        
+        
+        $(document).ready(function(){ 
+            document.getElementById("title").innerHTML = title;
+            document.getElementById("text").innerHTML = text;
+            document.getElementById("date").innerHTML = date;
+            
+            $.ajax({
+                url: 'https://vast-woodland-99478.herokuapp.com/my_pics',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({"acc_id": acc_id, "token": token, "story_id": story_id}),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                    pic.setAttribute('src', data.img);        
+
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                    
+                }
+            });
+            
+        });
+
+        function delete_story(){
+            var result = confirm("Are you sure you want to delete?");
+            if (result) {
+                $.ajax({
+                    url: 'https://vast-woodland-99478.herokuapp.com/deleteStory',
+                    dataType: 'json',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"acc_id": acc_id, "token": token, "rec_id": story_id}),
+                    processData: false,
+                    success: function( data, textStatus, jQxhr ){
+                        alert("DELETED");
+                        location = 'theme3.html';
+                    },
+                    error: function( jqXhr, textStatus, errorThrown ){
+                        console.log( "errorThrown" );
+                        alert("xxxxx")
+                    }
+                }); 
+            }
+        }
+
+        function edit_story(){
+            localStorage.setItem('edit', 'true');
+            localStorage.setItem('edit_title', title);
+            localStorage.setItem('edit_text', text);
+            location = "add_story3.html";
+        }
+    </script>
+
+</body>
+</html>
+
+
+

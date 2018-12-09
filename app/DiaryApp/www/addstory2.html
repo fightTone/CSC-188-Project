@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Write a Story</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/custome.css" />
+    <link rel="stylesheet" type="text/css" href="css/createstory.css?version=1" />
+     <script>
+        window.addEventListener("load", function(){
+            var editor = theWYSIWYG.document;
+            editor.designMode ="on";
+
+            boldButton.addEventListener("click", function(){
+                editor.execCommand("Bold", false, null);
+            },false);
+
+            italicButton.addEventListener("click", function(){
+                editor.execCommand("Italic", false, null);
+            },false);
+
+            strikeButton.addEventListener("click", function(){
+                editor.execCommand("Strikethrough", false, null)
+            },false);
+
+            orderedListButton.addEventListener("click", function(){
+                editor.execCommand("InsertOrderedList", false, "newOL" + Math.round(Math.random() * 1000));
+            },false);
+
+
+            unorderedListButton.addEventListener("click", function(){
+                editor.execCommand("InsertunOrderedList", false, "newOL" + Math.round(Math.random() * 1000));
+            },false);
+
+            fontColorButton.addEventListener("change", function(event){
+                editor.execCommand("ForeColor", false, event.target.value);
+            },false)
+
+            highlightButton.addEventListener("change", function(event){
+                editor.execCommand("BackColor", false, event.target.value);   
+            },false)
+
+
+            fontChanger.addEventListener("change", function(event){
+                editor.execCommand("FontName", false, event.target.value)
+            },false)
+
+            fontSizeChanger.addEventListener("change", function(event) {
+                editor.execCommand("FontSize", false, event.target.value);
+            },false)
+
+            undoButton.addEventListener("click", function(){
+                editor.execCommand("undo", false, null);
+            },false)
+
+            redoButton.addEventListener("click", function(){
+                editor.execCommand("redo", false, null);
+            },false)
+
+        },false);
+    </script>
+</head>
+<body>
+    <div id="main">
+
+        <div id="addStoryContainer" method="get">
+
+            <div id="margin">Title: <input id="title" type="text" name="title"></div>
+            <div id="textEditor">
+                <div id="theRibbon">
+                  <button id="boldButton" title="Bold"><b>B</b></button>
+                  <button id="italicButton" title="Italic"><em>I</em></button>
+                  <button id="strikeButton" title="Strikethrough"><s>abc</s></button>
+                  <button id="orderedListButton" title="Numbered List">(i)</button>
+                  <button id="unorderedListButton" title="Bullet List">&bull;</button>
+                  <select id="fontChanger">
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Consolas">Consolas</option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="monospace">Monospace</option>
+                    <option value="cursive">Cursive</option>
+                    <option value="sans-serif">Sans-Serif</option>
+                    <option value="Calibri">Calibri</option>
+                  </select>
+                  <select id="fontSizeChanger">
+                    <script>
+                        for(var i = 1; i < 10; i++){
+                            document.write("<option value='"+i+"'>"+i+"</option>")
+                        }
+                    </script>
+                  </select>
+                  <button id="undoButton" title="Undo the previous action">&larr;</button>
+                  <button id="redoButton" title="Redo">&rarr;</button>
+                  <input type="color" id="fontColorButton" title="Font Color">
+                  <input type="color" id="highlightButton" title="
+                  Highlight">
+                  
+                
+                
+                <!-- <img src="images/savebutton.png" alt="Save Button" style="width: 20px; height: 20px;">   -->
+                </div>
+                <div id="richTextArea">
+                    <iframe id="theWYSIWYG" name="theWYSIWYG" frameborder="0"></iframe>
+                </div>       
+            </div>
+            <br>
+            
+        </div>
+    </div>
+     <input id="button" type="submit" onclick="addStory()" value="Save">
+            
+     <!-- Footbar section -->
+    <div id="footer">
+            <div class="container">
+                <div class="search">
+                </div>
+                <div href="go_to_add()" class="add">
+                </div>
+                <script>
+                    function go_to_add(){
+                        location = "add.html";
+                    }
+                </script>
+                
+                <div class="planner">
+                </div>
+                <div class="home">
+                </div>
+            </div>
+    </div>
+    <!-- Footbar section ends -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          $('#title').focus();
+            $('#text').autosize();
+        });
+        var acc_id = localStorage.getItem('acc_id');
+        var token = localStorage.getItem('token');
+
+        function addStory(){
+
+            $.ajax({
+                url: 'https://vast-woodland-99478.herokuapp.com/addStory',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({"acc_id": acc_id, "token": token, "title": $('#title').val(), "text": $('#text').val()}),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                    alert(data.msg);
+
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                    alert("error")
+                }
+            });
+        }
+    </script>
+    <script>
+        var fonts = document.querySelectorAll("select#fontChanger > option");
+        for(var i = 0; i < fonts.length; i++){
+            fonts[i].style.fontFamily = fonts[i].value;
+        }
+    </script>
+
+</body>
+</html>
+
+
+
