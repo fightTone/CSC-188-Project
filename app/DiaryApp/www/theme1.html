@@ -10,7 +10,21 @@
     
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
-    <link rel="stylesheet" type="text/css" href="css/custome.css" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+     <style>
+        ul {list-style: none;padding: 0px;margin: 0px;}
+        ul li {display: block; border: none;}
+        li ul {display: none;}
+      ul li a {display: block; text-decoration: none;
+               white-space: nowrap;color:   white;}
+      ul li a:hover {background-image: url(../images/settings_two1.png); background-repeat: no-repeat;}
+     
+      li:hover ul {display: block; position: absolute;}
+     /* li:hover li {float: none;}*/
+      li:hover ul li a {padding: 5px;background:    #708090; font-size: 18px; font-size: 4vw; font-family: "Century Gothic";} 
+      /*li:hover li a:hover {background: white;}*/
+      #drop-nav li ul li {border-top: 0px;}
+    </style>    
     <title>My Stories</title>
 </head>
 
@@ -20,8 +34,18 @@
     <!-- Navbar section -->
         <header>
             <nav>
-                <a href="#" class="logo"><img src="../images/logo_01.png"></a>
-                <a href="#" class="settings"></a>
+                <a href="#" class="notification"><img src="../images/notification.png"></a>
+                <a href="#" class="logo"><img src="../images/newlogo.png"></a>
+                <ul id="drop-nav">
+                    <li><a href="#" class="settings"></a>
+                        <ul>
+                            <li><a href="theme_setting.html" style="margin-left: 345px; margin-top: 60px;">Themes</a></li>
+                            <li><a href="theme_setting.html" style="margin-left: 345px;">Fonts</a></li>
+                            <li><a href="#" style="margin-left: 345px;">Setting</a></li>
+                            <li><a href="#" style="margin-left: 345px;">Setting</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </nav>
         </header>     
     <!-- Navbar section ends -->
@@ -30,6 +54,20 @@
         <div id="storiescontainer" style="padding-top: 80px; 
   position: relative; padding-bottom: 80px;">
         </div>  
+        <div onclick="go_to_add()" class="add" style="position: fixed; bottom: 10%; right: 0%; z-index: 20;">
+        </div>
+        <script>
+                    function go_to_add(){
+                        try{
+                            localStorage.setItem('edit','false');
+                        }catch{
+                            console.log("error");
+                        }finally{
+                            location = "add_story1.html";
+                        }
+                    }
+                </script>
+
     </div> 
     <!-- Stories section ends -->
     <!-- Main section ends -->
@@ -40,23 +78,33 @@
             <div class="container">
                 <div class="search">
                 </div>
-                <div href="go_to_add()" class="add">
+                <div class="home">
+                </div>
+                <!-- <div onclick="go_to_add()" class="home">
                 </div>
                 <script>
                     function go_to_add(){
-                        location = "add.html";
+                        try{
+                            localStorage.setItem('edit','false');
+                        }catch{
+                            console.log("error");
+                        }finally{
+                            location = "addstory2.html";
+                        }
                     }
-                </script>
+                </script> -->
                 
                 <div class="planner">
                 </div>
-                <div class="home">
+                <div class="share">
+
                 </div>
+    
             </div>
     </div>
     <!-- Footbar section ends -->
 
-    <script src="js/jquery-3.3.1.min.js"></script>    
+   <script src="js/jquery-3.3.1.min.js"></script>    
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
@@ -90,22 +138,51 @@
         // }
         // var json =JSON.stringify({ "token": token, "acc_id": acc_id  });
         // xhr.send(json);
+        function pick_story(story_id){
+            $.ajax({
+                url: 'https://vast-woodland-99478.herokuapp.com/viewStory',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({"acc_id": acc_id, "token": token, "story_id": story_id}),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                    localStorage.setItem('title', data.title);
+                    localStorage.setItem('text', data.text);
+
+                    var dateString = data.created_date;
+                    var datcut = new Date(dateString).toUTCString();
+                    var date_split = datcut.split(' ').slice(0, 4).join(' ');
+
+                    localStorage.setItem('date', date_split);
+                    localStorage.setItem('story_id', story_id);
+                    location = 'view_story3.html';
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                    
+                }
+            });
+
+        }
+
+
 
         $(document).ready(function(){
             $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
                 var story='';
 
                 $.each(data,function(key,value){
-                    
-                    story += '<div class = "storycontainer"><div class="title"><h1>'+value.title+'</h1></div><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">'+value.created_date+'</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
+                    var dateString = value.created_date;
+                    var datcut = new Date(dateString).toUTCString();
+                    var date_split = datcut.split(' ').slice(0, 4).join(' ');
+                    var time_split = datcut.split(' ').slice(4).join(' ');
+                    story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul style="padding-left: 0px;"><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
                       
                 });
                 $('#storiescontainer').append(story);
             });
         });
-
-
-
 
         //  $.ajax({
         //     url: 'https://vast-woodland-99478.herokuapp.com/myStory',
@@ -132,23 +209,9 @@
         //         alert("error")
         //     }
         // });
-    
-    </script>
-    <script type="text/javascript">
-        $(window).on("scroll", function() {
-            if($(window).scrollTop()) {
-                $('header').addClass('gray');
-                $('.settings').css({
-                    "background-image": "url(../images/settingsbuttonwhite.png)"
-                });
-            }
-            else {
-                $('header').removeClass('gray');
-                $('.settings').css({
-                    "background-image": "url(../images/settingsbutton.png)"
-                });
-            }
-        })
+
+
+        
     </script>
 
 </body>

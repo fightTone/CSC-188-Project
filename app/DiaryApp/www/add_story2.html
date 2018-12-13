@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Write a Story</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" type="text/css" href="css/custom.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="css/createstory.css?version=1" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/add.css">
+  <body>    
+    <div id="wrapper">
+    <div class="container" style="padding-right: 10px; padding-left: 10px;">
+      <!-- Topper w/ logo -->
+      
+      <!-- Navigation -->
+    <div class="row">
+        <nav class="navbar" role="navigation" style="position: fixed; width: -webkit-fill-available;">
+          <div class="container" style="padding: 5px;">
+                <!-- <a href="land1.html" type="button"><img src="../images/back.png"></a> -->
+                 <a style="margin-left: 50%; color: greenyellow; font-weight: bold;">Date: </a><input type="date" name="bday" style="margin-left: 1%; padding: 10px; border-radius: 5px; background-color: #333; color: greenyellow;">
+          </div>
+        </nav>
+    </div>
+
+
+    <div id="wrapper">
+        <div id="paper" style="margin-top: 15%;" method="get">
+            <div id="margin">Title: <input id="title" type="text" name="title"></div>
+            <div>
+                <img id="blah" src="images/diary.jpg" alt="Girl in a jacket" style="width: 100%; height: 20%;">
+                <!-- <img id="blah" src="#" alt="your image" style="height: 15%; width: 10%; font-size: 20px;" /><br><br> -->
+                <input class="navbar-btn btn btn-gradient-blue" style="width: -webkit-fill-available;" type='file' id="imgInp" name="image" src="#" />
+                <!-- <a class="navbar-btn btn btn-gradient-blue" style="width: -webkit-fill-available;">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a> -->
+            </div>
+          </div>
+        </div>
+    <div class="container" style="padding: 3px;">
+        <!-- Font Style -->
+         <select id="editstyle" onchange="editstyle()" style="padding: 5px; border-radius: 5px;">
+            <option value="Cursive">Cursive</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Arial Black" style="font-family: 'Arial Black', Gadget, sans-serif">Arial Black</option>
+            <option value="Tahoma, Geneva, sans-serif" style="font-family: Tahoma, Geneva, sans-serif">Tahoma</option>
+            <option value="'Times New Roman', serif" style="font-family: 'Times New Roman">Times New Roman</option>
+         </select>
+
+         <!-- Font Color -->
+        <select id="editcolor" onchange="color()" style="padding: 5px; border-radius: 5px;">
+          <option value="#eb2538" data-textcolor="white" style="background-color: #eb2538; color: white;">Scarlet</option>
+          <option value="#be1e2d" data-textcolor="white" style="background-color: #be1e2d; color: white;">Crimson</option>
+          <option value="#eb25a2" data-textcolor="black" style="background-color: #eb25a2; color: black;">Hot Pink</option>
+          <option value="#be1e9e" data-textcolor="black" style="background-color: #be1e9e; color: black;">Violet</option>
+          <option value="#781363" data-textcolor="white" style="background-color: #781363; color: white;">Plumb</option>
+          <option value="#5a25eb" data-textcolor="white" style="background-color: #5a25eb; color: white;">Indigo</option>
+          <option value="#491ebe" data-textcolor="white" style="background-color: #491ebe; color: white;">Royal Blue</option>
+          <option value="#2e1378" data-textcolor="white" style="background-color: #2e1378; color: white;">Navy</option>
+          <option value="#25aceb" data-textcolor="black" style="background-color: #25aceb; color: black;">Sky</option>
+          <option value="#1e79be" data-textcolor="white" style="background-color: #1e79be; color: white;">Aqua</option>
+          <option value="#135178" data-textcolor="white" style="background-color: #135178; color: white;">Deep Sea</option>
+          <option value="#25eb64" data-textcolor="black" style="background-color: #25eb64; color: black;">Lime</option>
+          <option value="#1ebe6e" data-textcolor="black" style="background-color: #1ebe6e; color: black;">Emerald</option>
+          <option value="#137858" data-textcolor="white" style="background-color: #137858; color: white;">Forest</option>
+          <option value="#e8eb35" data-textcolor="black" style="background-color: #e8eb35; color: black;">Lemon</option>
+          <option value="#d1be17" data-textcolor="white" style="background-color: #d1be17; color: white;">Mustard</option>
+          <option value="#787813" data-textcolor="white" style="background-color: #787813; color: white;">Olive</option>
+          <option value="#eb6725" data-textcolor="black" style="background-color: #eb6725; color: black;">Carrot</option>
+          <option value="#be511e" data-textcolor="white" style="background-color: #be511e; color: white;">Pumpkin</option>
+          <option value="#57391e" data-textcolor="white" style="background-color: #57391e; color: white;">Chocolate</option>
+          <option value="#ffffff" data-textcolor="black" style="background-color: #ffffff; color: black;">White</option>
+          <option value="#ebebeb" data-textcolor="black" style="background-color: #ebebeb; color: black;">Plaster</option>
+          <option value="#bebebe" data-textcolor="black" style="background-color: #bebebe; color: black;">Concrete</option>
+          <option value="#787878" data-textcolor="white" style="background-color: #787878; color: white;">Asphalt</option>
+          <option value="#000000" data-textcolor="white" style="background-color: #000000; color: white;">Black</option>
+        </select>
+
+         <!-- Font Size -->
+        <select id="editfont" onchange="editfont()" style="padding: 5px; border-radius: 5px;">
+            <option value="15px">1</option>
+            <option value="20px">2</option>
+            <option value="25px">3</option>
+            <option value="30px">4</option>
+        </select>   
+    </div>
+    <div class="container" style="margin: 1%; padding: 5px;">
+        <textarea id="editor-text-box" name="textareaBox" style="border-radius: 5px; padding: 10px; width: -webkit-fill-available; height: 150px;"> </textarea>
+    </div>
+
+    <div>
+    <a href="theme3.html" class="btn btn-gradient-red" style="float: right; height: auto; margin-top: 1%; margin-left: 1%; margin-bottom: 2%; width: auto;" type="button">Cancel</a>
+    <input id="submit" class="btn btn-gradient-green" style="float: right; height: auto; margin-top: 1%; margin-bottom: 2%; width: auto;" type="submit"  value="Save">   
+    </div>  
+    <!-- Submit Content -->
+   <!--  <a class="rte button main" id="submit" title="Submit" onclick="submitContent()">Save <i class="fa fa-fw fa-check button"></i></a> -->
+    
+    <!-- File Upload -->
+    <!-- <div class="rte button main fileUpload">
+      <span>Upload <i class="fa fa-fw fa-upload"></i></span>
+      <input type="file" accept=".txt" class="upload" id="fileImport"/>
+    </div> -->
+   
+
+</body>
+   
+
+     <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script>
+        
+    function color() {
+    var x = document.getElementById("editcolor").value;
+    document.getElementById("editor-text-box").style["color"] = x;
+    }
+    // function fontstyle() {
+    // var x = document.getElementById("editstyle").value;
+    // document.getElementById("editor-text-box").style["font-family"] = x;
+    // }
+    // function fontsize() {
+    // var x = document.getElementById("editfont").value;
+    // document.getElementById("editor-text-box").style["font-size"] = x;
+    // }
+     function editfont() {
+        var x = document.getElementById("editfont").value;
+        document.getElementById("editor-text-box").style["font-size"] = x;
+        document.getElementById("editor-text-box").style["font-size"] = x;
+        
+    }
+     function editstyle() {
+        var x = document.getElementById("editstyle").value;
+        document.getElementById("editstyle").style["font-family"] = x;
+        document.getElementById("editor-text-box").style["font-family"] = x;
+    }
+    // $('#editstyle').click(function() {
+    //     document.getElementById("editor-text-box").style["font-family"] = "fantasy";
+    // });
+
+
+    function readURL(input) {
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+              $('#blah').attr('src', e.target.result);
+              var img_source =document.getElementById("imgInp").getAttribute('src');
+              document.getElementById('get_src').innerHTML = img_source;
+              // var img_source =document.getElementById("blah").getAttribute('src');
+              // document.getElementById('get_src').innerHTML = img_source;
+              
+            }
+
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
+
+
+        $("#imgInp").change(function() {
+          readURL(this);
+        });
+
+        function formCreate(acc_id, token, filetype, story_id, fileVal){
+            var form = new FormData();
+            form.append('acc_id', acc_id);
+            form.append('token', token);
+            form.append('img_type',filetype);
+            form.append('story_id',story_id);
+            form.append('image', fileVal);             
+            return form;
+        }
+        var acc_id = localStorage.getItem('acc_id');
+        var token = localStorage.getItem('token');
+        var edit = localStorage.getItem('edit');
+        var rec_id = localStorage.getItem('story_id');
+        
+        if(edit == 'true'){
+            
+            var title = localStorage.getItem('edit_title');
+            var text = localStorage.getItem('edit_text');
+            document.getElementById("title").value = title;
+            document.getElementById("text").value = text;
+
+
+
+        }else{
+            $('#title').focus();
+            // $('#text').autosize();
+            document.getElementById("title").value = " ";
+            document.getElementById("editor-text-box").value = " ";
+        }
+          function fontss(){
+            var fnt = $('#editcolor').val()+","+$('#editfont').val()+","+$('#editstyle').val();
+            
+            alert(fnt)
+            console.log(fnt)
+            $.ajax({
+                  url: 'https://vast-woodland-99478.herokuapp.com/fonts',
+                  dataType: 'json',
+                  type: 'post',
+                  contentType: 'application/json',
+                  data: JSON.stringify({"acc_id": acc_id, "token": token, "font": fnt}),
+                  processData: false,
+                  success: function( data, textStatus, jQxhr ){
+                    alert('success');
+                      console.log(data);
+                  },
+                  error: function( jqXhr, textStatus, errorThrown ){
+                      console.log( errorThrown );
+                      alert("error")
+                  }
+              });
+          }      
+   
+        $( "#submit" ).click(function() {
+            if(edit == 'true'){
+                    $.ajax({
+                    url: 'https://vast-woodland-99478.herokuapp.com/editTitle',
+                    dataType: 'json',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"acc_id": acc_id, "token": token, "rec_id": rec_id, "titleEdited": $('#title').val()}),
+                    processData: false,
+                    success: function( data, textStatus, jQxhr ){
+                        alert("Successfully Edited");
+                    },
+                    error: function( jqXhr, textStatus, errorThrown ){
+                        console.log( errorThrown );
+                        alert("error")
+                    }
+                });
+
+                $.ajax({
+                    url: 'https://vast-woodland-99478.herokuapp.com/editStory',
+                    dataType: 'json',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"acc_id": acc_id, "token": token, "rec_id": rec_id, "dataEdited": $('#text').val()}),
+                    processData: false,
+                    success: function( data, textStatus, jQxhr ){
+                        localStorage.setItem('title',data.title);
+                        localStorage.setItem('text',data.text);
+                        location = "view_story2.html";
+
+                    },
+                    error: function( jqXhr, textStatus, errorThrown ){
+                        console.log( errorThrown );
+                        alert("error")
+                    }
+                });
+            }
+
+            else{
+                
+
+
+                $.ajax({
+                    url: 'https://vast-woodland-99478.herokuapp.com/addStory',
+                    dataType: 'json',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"acc_id": acc_id, "token": token, "title": $('#title').val(), "text": $('#editor-text-box').val()}),
+                    processData: false,
+                    success: function( data, textStatus, jQxhr ){
+                        fontss();
+                        uploadImage(data.id)
+                        location = "theme2.html";
+
+                    },
+                    error: function( jqXhr, textStatus, errorThrown ){
+                        console.log( errorThrown );
+                        alert("error")
+                    }
+                });
+            }
+        });
+
+        function uploadImage(story_id){
+            alert("im in");
+               
+            $.ajax({
+              type: 'POST',
+                  url: 'https://vast-woodland-99478.herokuapp.com/api/v3/image',
+                  data: formCreate(acc_id, token, 'image', story_id, $('input[name="image"]')[0].files[0]),
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  async: false,
+                  success: function(response) {
+                    alert("asdfasdfasdfasdfa");
+                    if(response.msg=='ok'){
+
+                        localStorage.setItem('imahe',response.img);
+
+                      // alert(response.id+" "+response.img);
+                                          
+                    }
+                    else{
+                        alert('error');
+                      console.log(response.msg);
+                      alert(response.msg);
+                    }
+                  },
+          });
+
+        }
+
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+$(document).ready(function(){
+  // Call iFrameReady function
+  iFrameReady();
+  
+  // Handle Editor Permissions
+  setPermissions(1,1,1,1,1,1,1,1,1,1,1);
+  
+  // Handle text file import event
+  $("#fileImport").change(function() {
+    var fr = new FileReader();
+    console.log("This = " + this);
+    fr.onload = function() {
+      loadContent(this.result);
+      console.log("This.result = " + this.result);
+    };
+    fr.readAsText(this.files[0]);
+    console.log("This.Files[0] = " + this.files[0]);
+  });
+  
+  
+  // Load content
+  //loadContent("This is <i>Awesome</i>!");
+  
+  // Preformat text font
+  $('.editor-richText-box').ready(function() {
+    richTextBox.document.execCommand('fontName',false,'sans-serif'); 
+  })
+  
+  // Dropdown Functionality
+  // font family
+  $('#fontFamily').change(function() {
+    var fontFamily = this.value;
+    // Match dropdown box style to selected color
+    $(this).css('font-family',fontFamily);
+    
+    // Set selected color
+    richTextBox.document.execCommand('fontName',false,fontFamily);
+  });
+  
+  $('#parStyle').change(function() {
+    richTextBox.document.execCommand('formatBlock',false,this.value); 
+  });
+  
+  $('#fontSize').change(function() {
+    richTextBox.document.execCommand('fontSize',false,this.value); 
+  });
+  
+  $('#textColor').change(function() {
+    var colorValue = this.value;
+    var textColor = $(this).css('color');
+    console.log("TextColor: ",textColor);
+    if (colorValue == "CUSTOM") {
+      // Prompt for Custom Color
+      colorValue = prompt("Enter the HEX value or RGBA value: ","");
+    }
+    // Match dropdown box style to selected color
+    $(this).css('background-color',colorValue);
+    
+    // Set selected color
+    richTextBox.document.execCommand('foreColor',false,colorValue); 
+  });
+  
+  $('#textHilight').change(function() {
+    var color = this.value;
+    if (color == "CUSTOM") {
+      // Prompt for Custom Color
+      color = prompt("Enter the HEX value or RGBA value: ","");
+    }
+    richTextBox.document.execCommand('foreColor',false,color); 
+  });
+  
+});
+
+/* FUNCTION DEFINITIONS */
+
+/* FUNCTION: iFrameReady()
+Allows user editing of iFrame contents. */
+function iFrameReady() {
+  richTextBox.document.designMode = 'On';
+}
+
+/* FUNCTION: submitContent()
+Inserts rich text iFrame content into textarea field and submits the content to the parser */
+function submitContent() {
+  var theForm = document.getElementById("wc-richTextEditor-form");
+  theForm.elements["textareaBox"].value = window.frames['richTextBox'].document.body.innerHTML;
+  theForm.submit();
+}
+
+/* FUNCTION: importContent()
+Gets html content from database and injects it into the editor iframe */
+function loadContent(content) {
+  var theForm = document.getElementById("wc-richTextEditor-form");
+  window.frames['richTextBox'].document.body.innerHTML = content;
+}
+
+/* FUNCTION: setPermissions()
+Gets object editing permissions and sets Constants for editor's use. */
+function setPermissions(HTML,CHANGE_PAR_STYLE,ALLOW_H1,CHANGE_INLINE_STYLE,CHANGE_SIZE,CHANGE_FONT_FAMILY,CHANGE_PAR_ALIGNMENT,CHANGE_TEXT_COLOR,ADD_LINK,ADD_LIST,ADD_IMAGE) {
+    // Restrict all HTML features
+    if (HTML == 0) {
+      CHANGE_PAR_STYLE = 0;
+      ALLOW_H1 = 0;
+      CHANGE_INLINE_STYLE = 0;
+      CHANGE_SIZE = 0;
+      CHANGE_FONT_FAMILY = 0;
+      CHANGE_PAR_ALIGNMENT = 0;
+      CHANGE_TEXT_COLOR = 0;
+      ADD_LINK = 0;
+      ADD_LIST = 0;
+      ADD_IMAGE = 0;
+    }
+    
+    //Handle Permissions
+    if (CHANGE_PAR_STYLE == 0) {
+      $('.editor-controls > #parStyleGroup').hide();
+    }
+    if (ALLOW_H1 == 0) {
+      $('option#heading1').hide();
+      $('option#heading1').selected = false;
+    }
+    if (CHANGE_INLINE_STYLE == 0) {
+      $('.editor-controls > #inlineStyleGroup').hide();
+    }
+    if (CHANGE_SIZE == 0) {
+      $('.editor-controls > #textSizeGroup').hide();
+    }
+    if (CHANGE_FONT_FAMILY == 0) {
+      $('.editor-controls > #fontFamilyGroup').hide();
+    }
+    if (CHANGE_PAR_ALIGNMENT == 0) {
+      $('.editor-controls > #alignmentGroup').hide();
+    }
+    if (CHANGE_TEXT_COLOR == 0) {
+      $('.editor-controls > #textColorGroup').hide();
+    }
+    if (ADD_LIST == 0) {
+      $('.editor-controls > #listsGroup').hide();
+    }
+    if (ADD_LINK == 0) {
+      $('.editor-controls > #linkGroup').hide();
+    }
+}
+
+/* FUNCTION: importFromFile()
+Gets object editing permissions and sets Constants for editor's use. */
+
+
+/* FUNCTION: header1Sel()
+Sets Header 1 peragraph style for the text */
+function header1Sel() {
+  richTextBox.document.execCommand('formatBlock',false,'h1'); 
+}
+
+/* FUNCTION: header2Sel()
+Sets Header 2 peragraph style for the text */
+function header2Sel() {
+  richTextBox.document.execCommand('formatBlock',false,'h2'); 
+}
+
+/* FUNCTION: header3Sel()
+Sets Header 3 peragraph style for the text */
+function header3Sel() {
+  richTextBox.document.execCommand('formatBlock',false,'h3'); 
+}
+
+/* FUNCTION: paragraphSel()
+Sets Paragraphy peragraph style for the text */
+function paragraphSel() {
+  richTextBox.document.execCommand('formatBlock',false,'p'); 
+}
+
+/* FUNCTION: fontSel()
+Change font family of selected text. */
+function fontSel() {
+  
+}
+
+/* FUNCTION: sizeSel()
+Change font size of selected text. */
+function sizeSel() {
+  var size = prompt('Font size:', '');
+  richTextBox.document.execCommand('FontSize',false,size);
+}
+
+/* FUNCTION: boldSel()
+Bolds selected text. */
+function boldSel() {
+  richTextBox.document.execCommand('bold',false,null); 
+}
+
+/* FUNCTION: underlineSel()
+Underlines selected text. */
+function underlineSel() {
+  richTextBox.document.execCommand('underline',false,null); 
+}
+
+/* FUNCTION: italicSel()
+Italicizes selected text. */
+function italicSel() {
+  richTextBox.document.execCommand('italic',false,null); 
+}
+
+/* FUNCTION: strikethroughSel()
+Stikes through selected text. */
+function strikethroughSel() {
+  richTextBox.document.execCommand('strikeThrough',false,null); 
+}
+
+/* FUNCTION: textColorSel()
+Changes text color of selected text. */
+function textColorSel() {
+  
+}
+
+/* FUNCTION: highlightColorSel()
+Changes highlight color of selected text. */
+function highlightColorSel() {
+  
+}
+
+/* FUNCTION: alignLeftSel()
+Left-aligns selected text. */
+function alignLeftSel() {
+  richTextBox.document.execCommand('justifyLeft',false,null); 
+}
+
+/* FUNCTION: alignCenterSel()
+Center-aligns selected text. */
+function alignCenterSel() {
+  richTextBox.document.execCommand('justifyCenter',false,null); 
+}
+
+/* FUNCTION: alignRightSel()
+Right-aligns selected text. */
+function alignRightSel() {
+  richTextBox.document.execCommand('justifyRight',false,null); 
+}
+
+/* FUNCTION: alignJustifySel()
+Justifies selected text. */
+function alignJustifySel() {
+  richTextBox.document.execCommand('justifyFull',false,null); 
+}
+
+/* FUNCTION: newOlSel()
+Creates new Ordered List. */
+function newOlSel() {
+  richTextBox.document.execCommand("InsertOrderedList", false,"newOL");
+}
+
+/* FUNCTION: newUlSel()
+Creates new Unordered List. */
+function newUlSel() {
+  richTextBox.document.execCommand("InsertUnorderedList", false,"newUL");
+}
+
+/* FUNCTION: linkSel()
+Creates new hyperlink. */
+function linkSel() {
+  var linkURL = prompt("Enter URL:", "http://"); 
+  richTextBox.document.execCommand("CreateLink", false, linkURL);
+}
+
+/* FUNCTION: unlinkSel()
+Removes hyperlink. */
+function unlinkSel() {
+  richTextBox.document.execCommand("Unlink", false, null);
+}
+
+</script>
+
+
+</body>
+</html>
+
+
+

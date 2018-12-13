@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zxx">
 
 <head>
     <title>Memoir</title>
@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <meta name="keywords" content="Quick Signin & Signup form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+
+
     <script>
         addEventListener("load", function () {
             setTimeout(hideURLbar, 0);
@@ -18,7 +20,7 @@
     </script>
     <!-- //Meta-Tags -->
     <!-- Index-Page-CSS -->
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/style_two.css" type="text/css" media="all">
     <!-- onlinefonts -->
     <link href="//fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet">
     <!-- //Custom-Stylesheet-Links -->
@@ -26,7 +28,7 @@
 
 <body>
     <header>
-        <h1 class="title-agile text-center"><img src="../images/newlogo.png"></h1>
+        <h1 class="title-agile text-center">Memoir</h1>
     </header>
     <!-- //header -->
     <section class="login-wrap">
@@ -43,29 +45,29 @@
                             <label for="email_s" class="label">Email Address</label>
                             <input id="email_s" type="email" class="input" required>
                         </div>
-                        <div class="group" style="margin-top: 30px;">
+                        <div class="group">
                             <label for="pass" class="label">Password</label>
                             <input id="pass" type="password" class="input" data-type="password" required>
                         </div>
-                        <!-- <div class="group">
+                        <div class="group">
                             <input id="check" type="checkbox" class="check" checked>
                             <label for="check">
                                 <span class="icon"></span> Keep me Signed in</label>
-                        </div> -->
-                        <div class="group" style="margin-top: 30px;">
+                        </div>
+                        <div class="group">
                             <input onclick="login()" type="submit" class="button" value="Sign In">
                         </div>
                         <div class="hr"></div>
-                        <!-- <div class="foot-lnk">
+                        <div class="foot-lnk">
                             <h2><a href="#">Forgot Password?</a></h2>
-                        </div> -->
+                        </div>
                     
                 </div>
                 <!-- //signin form -->
                 <!-- signup form -->
                 <div class="signup_wthree">
                     
-                        <div class="group" style="margin-top: -30px;">
+                        <div class="group">
                             <label for="fname" class="label">First Name</label>
                             <input id="fname" type="text" class="input" required>
                         </div>
@@ -85,13 +87,13 @@
                             <label for="password2" class="label">Re-Enter Password</label>
                             <input id="password2" type="password" class="input" data-type="password" required>
                         </div>
-                        <div class="group" style="margin-top: 15px;">
+                        <div class="group">
                             <input onclick="pass()" type="submit" class="button" value="Sign Up">
                         </div>
                         <div class="hr"></div>
-                        <!-- <div class="foot-lnk">
+                        <div class="foot-lnk">
                             <label for="tab-1">Already Member? </label>
-                        </div> -->
+                        </div>
                     
                 </div>
                 <!-- //signup form -->
@@ -102,7 +104,7 @@
     <footer>
         <div class="copy-wthree text-center">
             <p>My Diary App
-                <a href="#">Diary App</a>
+                <a href="http://w3layouts.com">Diary App</a>
             </p>
         </div>
     </footer>
@@ -110,7 +112,6 @@
     <!-- script for password match -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script>
-
     function pass(){
 
         $.ajax({
@@ -124,8 +125,6 @@
                 localStorage.setItem('acc_id',data.acc_id);
                 localStorage.setItem('token',data.token);
                 $('#response pre').html( JSON.stringify( data ) );
-                location = "theme1.html";
-
                 alert(data.acc_id);
                 alert(data.token);
             },
@@ -138,7 +137,7 @@
     }
 
     function login(){
-        alert($('#pass').val())
+        // alert($('#pass').val())
 
         $.ajax({
             url: 'https://vast-woodland-99478.herokuapp.com/login',
@@ -152,10 +151,9 @@
                 localStorage.setItem('acc_id',data.acc_id);
                 localStorage.setItem('token',data.token);
                 $('#response pre').html( JSON.stringify( data ) );
-                location = "theme1.html";
-
                 alert(data.acc_id);
                 alert(data.token);
+                location = "land1.html";
                 
 
             },

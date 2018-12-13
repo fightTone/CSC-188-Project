@@ -5,11 +5,13 @@ html {
 
 
 body {
-	background-image: url(../images/newbackground1.png);
+	background-image: url(../images/stars.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   left: 0px;
   top: 0px;
+  right: 0px;
+  bottom: 0px;
   min-height: 100%;
   max-width: 100%;
   max-height: 100%;
@@ -87,6 +89,7 @@ header.gray {
   margin-left: 25px;
   margin-right: 25px;
   margin-bottom: 5px;
+  padding-bottom: 10px;
   /*overflow: auto;*/
   top: 100px;
   left: 50%;
@@ -132,6 +135,14 @@ header.gray {
 }
 
 
+.backButton {
+  border: none; 
+  color: white; 
+  text-decoration: none;
+  font-size: 18px;
+  margin: 5px;
+}
+
 
 #datetimecontainer {
 	white-space: pre-wrap;
@@ -154,7 +165,7 @@ header.gray {
 }
 
 
-#editbutton {
+.editbutton {
   background-image: url(../images/editbutton.png);
   background-repeat: no-repeat;
   float: left;
@@ -233,13 +244,25 @@ header.gray {
 }
 
 .add {
-	background-image: url(../images/addbutton.png);
+	background-image: url(../images/add.png);
 	background-repeat: no-repeat;
 	margin-left: 20px;
   margin-right: 20px;
 	margin-top: 5px;
-	width: 25px;
-	height: 25px;
+	width: 75px;
+	height: 75px;
+}
+
+
+
+.home {
+  background-image: url(../images/homebutton.png);
+  background-repeat: no-repeat;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
+  width: 25px;
+  height: 25px;
 }
 
 
@@ -253,8 +276,8 @@ header.gray {
 	height: 25px;
 }
 
-.home {
-	background-image: url(../images/homebutton.png);
+.share {
+	background-image: url(../images/sharbutton.png);
 	background-repeat: no-repeat;
 	margin-left: 40px;
   margin-right: 20px;
