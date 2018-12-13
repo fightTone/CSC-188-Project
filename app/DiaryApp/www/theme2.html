@@ -21,11 +21,7 @@
      
       li:hover ul {display: block; position: absolute;}
      /* li:hover li {float: none;}*/
-<<<<<<< HEAD
       li:hover ul li a {padding: 5px; background:#E0FFFF; font-size: 18px; font-size: 4vw; font-family: "Century Gothic";} 
-=======
-      li:hover ul li a {padding: 5px;background:    #E0FFFF; font-size: 18px; font-size: 4vw; font-family: "Century Gothic";} 
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
       /*li:hover li a:hover {background: white;}*/
       #drop-nav li ul li {border-top: 0px;}
     </style>    
@@ -38,7 +34,6 @@
     <!-- Navbar section -->
         <header>
             <nav>
-<<<<<<< HEAD
                 <a href="#" class="logo"><img src="../images/newlogo.png"></a>
                 <!-- <a href="#" class="notification"><img src="../images/bell_two1.png"></a> -->
                 
@@ -56,17 +51,6 @@
                                       location = "index.html";
                                     }
                             </script>
-=======
-                <a href="#" class="notification"><img src="../images/bell_two1.png"></a>
-                <a href="#" class="logo"><img src="../images/newlogo.png"></a>
-                <ul id="drop-nav">
-                    <li><a href="#" class="settings"></a>
-                        <ul>
-                            <li><a href="theme_setting.html" style="margin-left: 345px; margin-top: 60px;">Themes</a></li>
-                            <li><a href="#" style="margin-left: 345px;">Fonts</a></li>
-                            <li><a href="#" style="margin-left: 345px;">Setting</a></li>
-                            <li><a href="#" style="margin-left: 345px;">Setting</a></li>
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
                         </ul>
                     </li>
                 </ul>
@@ -75,7 +59,6 @@
     <!-- Navbar section ends -->
 
     <!-- Stories section -->
-<<<<<<< HEAD
         <div id="storiescontainer" style="padding-top: 80px; position: relative; padding-bottom: 80px;"></div>
         <div onclick="openSearch()" class="searchbar" style="position: fixed; bottom: 20%; right: 0%; z-index: 20;"></div>
         <div onclick="go_to_add()" class="add" style="position: fixed; bottom: 5%; right: 0%; z-index: 20;"></div>
@@ -90,45 +73,18 @@
                 }
             }
         </script>
-=======
-        <div id="storiescontainer" style="padding-top: 80px; 
-  position: relative; padding-bottom: 80px;">
-        </div>  
-        <div onclick="go_to_add()" class="add" style="position: fixed; bottom: 10%; right: 0%; z-index: 20;">
-        </div>
-        <script>
-                    function go_to_add(){
-                        try{
-                            localStorage.setItem('edit','false');
-                        }catch{
-                            console.log("error");
-                        }finally{
-                            location = "add_story2.html";
-                        }
-                    }
-                </script>
-
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
     </div> 
     <!-- Stories section ends -->
     <!-- Main section ends -->
 
 
     <!-- Footbar section -->
-<<<<<<< HEAD
     <!-- <div id="footer">
-=======
-    <div id="footer">
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
             <div class="container">
                 <div class="search">
                 </div>
                 <div class="home">
-<<<<<<< HEAD
                 </div> -->
-=======
-                </div>
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
                 <!-- <div onclick="go_to_add()" class="home">
                 </div>
                 <script>
@@ -143,22 +99,14 @@
                     }
                 </script> -->
                 
-<<<<<<< HEAD
        <!--          <div class="planner">
-=======
-                <div class="planner">
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
                 </div>
                 <div class="share">
 
                 </div>
     
             </div>
-<<<<<<< HEAD
     </div> -->
-=======
-    </div>
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
     <!-- Footbar section ends -->
 
 <script src="js/jquery-3.3.1.min.js"></script>    
@@ -234,11 +182,7 @@
                     var datcut = new Date(dateString).toUTCString();
                     var date_split = datcut.split(' ').slice(0, 4).join(' ');
                     var time_split = datcut.split(' ').slice(4).join(' ');
-<<<<<<< HEAD
                     story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><center><h3>'+value.title+'</h3></center><div id="datetimecontainer"><ul style="padding-left: 0px;"><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
-=======
-                    story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul style="padding-left: 0px;"><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
                       
                 });
                 $('#storiescontainer').append(story);
@@ -271,7 +215,6 @@
         //     }
         // });
 
-<<<<<<< HEAD
 function openSearch() {
   document.getElementById("myOverlay").style.display = "block";
 }
@@ -279,15 +222,12 @@ function openSearch() {
 function closeSearch() {
   document.getElementById("myOverlay").style.display = "none";
 }
-=======
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
 
         
     </script>
 
 </body>
 
-<<<<<<< HEAD
 <div id="myOverlay" class="overlay">
   <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
   <div class="overlay-content">
@@ -298,6 +238,4 @@ function closeSearch() {
   </div>
 </div>
 
-=======
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
 </html>

@@ -242,7 +242,6 @@ header.gray {
 	height: 35px;
 }
 
-<<<<<<< HEAD
 .searchbar {
   background-image: url(../images/searchicon.png);
   background-repeat: no-repeat;
@@ -261,16 +260,6 @@ header.gray {
   margin-top: 5px;
   width: 75px;
   height: 75px;
-=======
-.add {
-	background-image: url(../images/add.png);
-	background-repeat: no-repeat;
-	margin-left: 20px;
-  margin-right: 20px;
-	margin-top: 5px;
-	width: 75px;
-	height: 75px;
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
 }
 
 

@@ -48,13 +48,8 @@ header.gray {
   background-repeat: no-repeat;
   float: left;
   margin-top: 15px;
-<<<<<<< HEAD
   margin-left: 5%;
   margin-right: 25%
-=======
-  margin-left: 20%;
-  margin-right: 20%
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
   padding: 15px;
   width :113px;
   height: 31px;
@@ -62,7 +57,6 @@ header.gray {
 
 
 .settings {
-<<<<<<< HEAD
   background-image: url(../images/settings.png);
   background-repeat: no-repeat;
   float: right;
@@ -73,23 +67,6 @@ header.gray {
   right: 5px;
   bottom: 5px;
 }
-=======
-  background-image: url(../images/settings_two1.png);
-  background-repeat: no-repeat;
-  float: right;
-  margin-top: 15px;
-  margin-right: 10px;
-  width : 35px;
-  height: 35px;
-  right: 5px;
-  bottom: 5px;
-}
-
-
-
-
-
->>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
 
 
 .storycontainer {
