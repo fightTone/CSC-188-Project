@@ -191,6 +191,7 @@
             <nav class="navbar navbar-inverse" role="navigation" style=" position: fixed; width: -webkit-fill-available;>
               <div class="container">
                   
+<<<<<<< HEAD
                     <a onclick="themechecker()" type="button" class="navbar-btn btn btn-gradient-red" style="margin-left: 8px;">< Back</a>
                     <b id="date" style="color: aquamarine;"></b>
                   <script>
@@ -205,6 +206,11 @@
                               }
                       }
                   </script>    
+=======
+                    <a href="theme2.html" type="button" class="navbar-btn btn btn-gradient-red" style="margin-left: 8px;">< Back</a>
+                    <b id="date" style="color: aquamarine;"></b>
+
+>>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
               </div>
             </nav>
           </div>
@@ -288,7 +294,11 @@
                     processData: false,
                     success: function( data, textStatus, jQxhr ){
                         alert("DELETED");
+<<<<<<< HEAD
                         location = 'theme2.html';
+=======
+                        location = 'theme3.html';
+>>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
                         console.log( "errorThrown" );
@@ -302,7 +312,11 @@
             localStorage.setItem('edit', 'true');
             localStorage.setItem('edit_title', title);
             localStorage.setItem('edit_text', text);
+<<<<<<< HEAD
             location = "add_story2.html";
+=======
+            location = "add_story3.html";
+>>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
         }
 
         $(document).ready(function(){
@@ -314,12 +328,17 @@
                     data: JSON.stringify({"acc_id": acc_id, "token": token}),
                     processData: false,
                     success: function( data, textStatus, jQxhr ){
+<<<<<<< HEAD
                         
                         var str =data.font
                         var arr = str.split(',')
                         document.getElementById("text").style["color"] = arr[0];
                         document.getElementById("text").style["font-size"] = arr[1];
                         document.getElementById("text").style["font-family"] = arr[2];
+=======
+                        alert(textStatus)
+                        console.log(data.font+' '+data.theme)
+>>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
                         console.log( "errorThrown" );

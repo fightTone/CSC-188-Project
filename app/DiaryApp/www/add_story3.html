@@ -87,6 +87,7 @@
         </select>   
     </div>
     <div class="container" style="margin: 1%; padding: 5px;">
+<<<<<<< HEAD
         <textarea id="editor-text-box" name="textareaBox" style="border-radius: 5px; padding: 10px; width: -webkit-fill-available; height: 150px;  background-image: url(images/paper3.png);" required> </textarea>
     </div>
 
@@ -107,6 +108,15 @@
               }
       }
     </script>    
+=======
+        <textarea id="editor-text-box" name="textareaBox" style="border-radius: 5px; padding: 10px; width: -webkit-fill-available; height: 150px;" required> </textarea>
+    </div>
+
+    <div>
+    <a href="theme3.html" class="btn btn-gradient-red" style="float: right; height: auto; margin-top: 1%; margin-left: 1%; margin-bottom: 2%; width: auto;" type="button">Cancel</a>
+    <input id="submit" class="btn btn-gradient-green" style="float: right; height: auto; margin-top: 1%; margin-bottom: 2%; width: auto;" type="submit"  value="Save">   
+    </div>  
+>>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
     <!-- Submit Content -->
    <!--  <a class="rte button main" id="submit" title="Submit" onclick="submitContent()">Save <i class="fa fa-fw fa-check button"></i></a> -->
     
@@ -282,6 +292,7 @@
                     success: function( data, textStatus, jQxhr ){
                         fontss();
                         uploadImage(data.id)
+<<<<<<< HEAD
                         var theme = localStorage.getItem('themes');
                            if (theme == 'theme1'){
                                   location = 'theme1.html';
@@ -290,6 +301,9 @@
                                 }else if(theme == 'theme3'){
                                   location = "theme3.html";
                                 }
+=======
+                        location = "theme3.html";
+>>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
 
                     },
                     error: function( jqXhr, textStatus, errorThrown ){

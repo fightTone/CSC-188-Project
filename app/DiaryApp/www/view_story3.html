@@ -303,12 +303,17 @@
                     data: JSON.stringify({"acc_id": acc_id, "token": token}),
                     processData: false,
                     success: function( data, textStatus, jQxhr ){
+<<<<<<< HEAD
                         
                         var str =data.font
                         var arr = str.split(',')
                         document.getElementById("text").style["color"] = arr[0];
                         document.getElementById("text").style["font-size"] = arr[1];
                         document.getElementById("text").style["font-family"] = arr[2];
+=======
+                        alert(textStatus)
+                        console.log(data.font+' '+data.theme)
+>>>>>>> 09667ba9d2baabd28adc69906715f5d9a75cf9c2
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
                         console.log( "errorThrown" );
