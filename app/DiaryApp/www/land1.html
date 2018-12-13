@@ -5,99 +5,56 @@
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
-    <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" /> -->
+  
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
-    <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="style.css" media="screen, handheld" />
-    <link rel="stylesheet" type="text/css" href="enhanced.css" media="screen and (min-width: 40.5em)" /> -->
-    <link rel="stylesheet" type="text/css" href="css/customx.css" />
-    <title>Memoir</title>
+    <link rel="stylesheet" type="text/css" href="css/custome.css" />
+    <title>My Stories</title>
 </head>
 
 <body>
-    
-
+    <!-- Main Section -->
     <div id="main">
+    <!-- Navbar section -->
         <header>
             <nav>
-                <a onclick="logout()" class="logout"><img src="../images/logout.png"></a>
-                <a href="#" class="logo"><img src="../images/newlogo2.png"></a>
-                <script>
-                    function logout(){
-                     localStorage.clear();
-                     location = "index.html";
-                    }
-                </script>    
-                
+                <a href="#" class="logo"><img src="../images/logo_01.png"></a>
+                <a href="#" class="settings"></a>
             </nav>
-        </header>
-        
-        <div id="storiescontainer" style="padding-top: 80px; position: relative; padding-bottom: 80px;">
-            <!-- <div class="container" style="position: fixed; z-index: 20;"> 
-                <svg width="140" height="100" style="margin-left: 340px; margin-top: 350px;">
-                    <a onclick="go_to_add()">
-                    <image xlink:href="images/add.png" />
-                    </a>
-                </svg>
-            </div>    -->
-        </div>
+        </header>     
+    <!-- Navbar section ends -->
+
+    <!-- Stories section -->
+        <div id="storiescontainer" style="padding-top: 80px; 
+  position: relative; padding-bottom: 80px;">
+        </div>  
+    </div> 
+    <!-- Stories section ends -->
+    <!-- Main section ends -->
 
 
-    </div>
-
-
-<div id="footer">
+    <!-- Footbar section -->
+    <div id="footer">
             <div class="container">
-                
-                <div class="search" data-toggle="modal" data-target="#search">
+                <div class="search">
+                </div>
+                <div href="go_to_add()" class="add">
                 </div>
                 <script>
                     function go_to_add(){
-                        try{
-                            localStorage.setItem('edit','false');
-                        }catch{
-                            console.log("error");
-                        }finally{
-                            location = "add.html";
-                        }
+                        location = "add.html";
                     }
                 </script>
-
-                <div id="cssd" class="planner">
+                
+                <div class="planner">
                 </div>
-                <div class="share">
+                <div class="home">
                 </div>
-                <div class="add" onclick="go_to_add()">
-                </div>
-                <!-- <div onclick="myFunction()" class="settings"></div>
-                        <div id="myDropdown" class="dropdown-content">
-                            <a href="#home">Home</a>
-                            <a href="#about">About</a>
-                            <a href="#contact">Contact</a>
-                        </div> -->
-    <script>
-            function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-            }
-            window.onclick = function(event) {
-        if (!event.target.matches('.settings')) {
-
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-    </script>
+            </div>
     </div>
-</div>
+    <!-- Footbar section ends -->
 
     <script src="js/jquery-3.3.1.min.js"></script>    
     <script type="text/javascript" src="cordova.js"></script>
@@ -105,11 +62,6 @@
     <script type="text/javascript">
         app.initialize();
     </script>
-    <script>
-                    $( "#cssd" ).click(function() {
-                        location = 'fontsample.html';
-                    });
-                </script>
     <script>
         
 
@@ -138,53 +90,22 @@
         // }
         // var json =JSON.stringify({ "token": token, "acc_id": acc_id  });
         // xhr.send(json);
-        function pick_story(story_id){
-            alert("hey!")
-            $.ajax({
-                url: 'https://vast-woodland-99478.herokuapp.com/viewStory',
-                dataType: 'json',
-                type: 'post',
-                contentType: 'application/json',
-                data: JSON.stringify({"acc_id": acc_id, "token": token, "story_id": story_id}),
-                processData: false,
-                success: function( data, textStatus, jQxhr ){
-                    localStorage.setItem('title', data.title);
-                    localStorage.setItem('text', data.text);
-
-                    var dateString = data.created_date;
-                    var datcut = new Date(dateString).toUTCString();
-                    var date_split = datcut.split(' ').slice(0, 4).join(' ');
-
-                    localStorage.setItem('date', date_split);
-                    localStorage.setItem('story_id', story_id);
-                    location = 'view_story.html';
-                },
-                error: function( jqXhr, textStatus, errorThrown ){
-                    console.log( errorThrown );
-                    
-                }
-            });
-
-        }
-
-
 
         $(document).ready(function(){
             $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
                 var story='';
 
                 $.each(data,function(key,value){
-                    var dateString = value.created_date;
-                    var datcut = new Date(dateString).toUTCString();
-                    var date_split = datcut.split(' ').slice(0, 4).join(' ');
-                    var time_split = datcut.split(' ').slice(4).join(' ');
-
-                    story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
+                    
+                    story += '<div class = "storycontainer"><div class="title"><h1>'+value.title+'</h1></div><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">'+value.created_date+'</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
                       
                 });
                 $('#storiescontainer').append(story);
             });
         });
+
+
+
 
         //  $.ajax({
         //     url: 'https://vast-woodland-99478.herokuapp.com/myStory',
@@ -211,40 +132,25 @@
         //         alert("error")
         //     }
         // });
-
-
-        
+    
+    </script>
+    <script type="text/javascript">
+        $(window).on("scroll", function() {
+            if($(window).scrollTop()) {
+                $('header').addClass('gray');
+                $('.settings').css({
+                    "background-image": "url(../images/settingsbuttonwhite.png)"
+                });
+            }
+            else {
+                $('header').removeClass('gray');
+                $('.settings').css({
+                    "background-image": "url(../images/settingsbutton.png)"
+                });
+            }
+        })
     </script>
 
-    <div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
-
-  <!-- Modal for full size images on click-->
-  <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
-    <span class="w3-button w3-black w3-xlarge w3-display-topright"></span>
-    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-      <img id="img01" class="w3-image">
-      <p id="caption"></p>
-    </div>
-  </div>
-
-<!-- { raw } -->
-<div class="modal fade" id="authentication" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close pull-right " data-dismiss="modal">&times;</button>
-           </div>
-          <h4 class="modal-title w3-center">Please enter your password</h4>
-          <div class="modal-body">
-          <input type="password" id="password" ng-value="password" class="form-control mb-3" placeholder="Password" style="width:80%; margin-left: 11%;"><br>
-          <button type="button" onclick="checkpass()" class="btn btn-primary" style="margin-left: 35%;width: 25%;background-color:#8eb5e0;  color: white;font-size: 95%; border: none; border-radius: 6px;">SUBMIT</button>
-   </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
 </body>
 
 </html>

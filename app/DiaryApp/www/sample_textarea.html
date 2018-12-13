@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sampole</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    
+</head>
+<body>
+	<button id="editfont">font</button><button id="editstyle">style</button><button id="lert">what's inside</button>
+	<select id="mySelect" onchange="myFunction()">
+	  <option value="blue">blue
+	  <option value="red">red
+	  <option value="yellow">yellow
+	  <option value="green">green
+	</select>
+	<textarea id="editor-text-box" name="textareaBox"> </textarea>
+
+
+</body>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <script>
+  	function myFunction() {
+	    var x = document.getElementById("mySelect").value;
+	    document.getElementById("editor-text-box").style["color"] = x;
+	}
+  	$('#editfont').click(function() {
+  		document.getElementById("editor-text-box").style["font-size"] = "26px";
+  		
+  	});
+  	$('#editstyle').click(function() {
+  		document.getElementById("editor-text-box").style["font-family"] = "cursive";
+  	});
+  	$('#lert').click(function() {
+  		alert($('#editor-text-box').val())
+  	});
+  </script>
+</html>

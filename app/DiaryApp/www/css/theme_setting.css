@@ -1,0 +1,154 @@
+html {
+  min-height: 100%;
+  margin: 0;
+}
+
+
+.main {
+   min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+body {
+  background-color:   #FFFAFA;
+  background-size: cover;
+  left: 0px;
+  top: 0px;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 2;
+  margin: 0;
+}
+
+
+
+ h1 {
+  background-repeat: no-repeat;
+  /*position: absolute;*/
+  margin-top: 80px;
+  font-size: 18px;
+  font-size: 4vw;
+  font-family: "Century Gothic";
+  color: rgb( 51, 49, 49 );
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+ /* padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;*/
+  /*left: 98px;*/
+ /* top: 133px;
+  width: 250px;
+  height: 15px;*/
+  z-index: 18;
+}
+
+
+
+
+
+.theme_container {
+  margin-top: 100px;
+  /*margin-bottom: */
+ /* overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  transform: rotate(-90deg);
+  transform-origin: right top;
+  transform: rotate(-90deg) translateY(-100px;);*/
+}
+
+/*.theme_container > div {
+  width: 300px;
+  height: 600px;
+  transform: rotate(90deg);
+  transform-origin: right-top;
+}*/
+
+.themes {
+  bottom: 50px;
+}
+
+.theme1 {
+  background-image: url(../images/default.png);
+  height: 1000px;
+  width: 500px;
+  float: left;
+  margin-left: 25%;
+  margin-top: 90px;
+  /*margin-left: 20px;*/
+  /*margin-right: 20px;*/
+  background-repeat: no-repeat;
+  /*margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;*/
+}
+
+.theme2 {
+  background-image: url(../images/theme2.png);
+  height: 1000px;
+  width: 500px;
+  float: left;
+   margin-left: 25%;
+  margin-right: 90px;
+  margin-top: 400px;
+  /*background-repeat: no-repeat;*/
+  /*margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;*/
+}
+
+.theme3 {
+  background-image: url(../images/theme3.png);
+  height: 1000px;
+  width: 500px;
+  float: left;
+   margin-left: 25%;
+  margin-right: 90px;
+  margin-top: 400px;
+  /*background-repeat: no-repeat;*/
+  /*margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;*/
+}
+
+
+li {
+  background-repeat: no-repeat;
+  /*position: absolute;*/
+  margin-top: 1100px;
+  font-size: 18px;
+  font-size: 4vw;
+  font-family: "Century Gothic";
+  /*color: rgb( 51, 49, 49 );*/
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  list-style-type: none;
+  /*color: black;*/
+  /*text-decoration: none;*/
+ /* padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;*/
+  /*left: 98px;*/
+ /* top: 133px;
+  width: 250px;
+  height: 15px;*/
+  z-index: 18;
+}
+
+li a {
+  text-decoration: none;
+  color: black;
+  border: 2px solid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 30px;
+  /*margin: 5;*/
+}

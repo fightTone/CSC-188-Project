@@ -1,0 +1,298 @@
+html {
+  min-height: 100%;
+  margin: 0;
+}
+
+
+body {
+	background-image: url(../images/background_two1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 0px;
+  top: 0px;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 2;
+  margin: 0;
+}
+
+
+
+
+header {
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  position: fixed;
+  /*background: rgba(255, 255, 255, 0.2);*/
+  border-bottom: 1px #696969;
+  background-color: white;
+  /*box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);*/
+  margin-bottom: 20px;
+  z-index: 100;
+}
+
+header.gray {
+  background: rgb( 61, 61, 61 );
+}
+
+
+#main {
+	background-color: none;
+	min-height: calc(100vh - 70px)
+}
+
+.notification {
+  background-repeat: no-repeat;
+  float: left;
+  margin-top: 15px;
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  left: 5px;
+}
+
+
+.logo {
+ 	background-repeat: no-repeat;
+ 	float: left;
+  margin-top: 15px;
+  margin-left: 25%;
+  margin-right: 25%
+  padding: 15px;
+ 	width :113px;
+ 	height: 31px;
+}
+
+
+
+.settings {
+  background-image: url(../images/settings_two1.png);
+ 	background-repeat: no-repeat;
+ 	float: right;
+  margin-top: 15px;
+  margin-right: 10px;
+ 	width : 35px;
+ 	height: 35px;
+ 	right: 5px;
+  bottom: 5px;
+}
+
+
+
+
+.storycontainer {
+  border-radius: 10px;
+  /*background-color: rgb( 214, 214, 214 );*/
+  background-color: white;
+  background-image: url(../images/star_container3.png);
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 5px;
+  top: 100px;
+  left: 50%;
+  right:50%;
+  min-width: 288px;
+  max-height: 100%;
+  
+}
+
+/*.title {
+  text-overflow: ellipsis;
+}*/
+
+ h1 {
+  font-size: 18px;
+  font-size: 4vw;
+  font-family: "Century Gothic";
+  color: rgb( 51, 49, 49 );
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  /*left: 98px;*/
+  top: 133px;
+  width: 250px;
+  height: 15px;
+  z-index: 18;
+}
+
+ h2 {
+  font-size: 9px;
+  font-family: "Century Gothic";
+  color: rgb( 51, 49, 49 );
+  font-weight: bold;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  margin-left: 2px;
+  float: left;
+  z-index: 19;
+}
+
+
+.backButton {
+  border: none; 
+  color: white; 
+  text-decoration: none;
+  font-size: 18px;
+  margin: 5px;
+}
+
+
+#datetimecontainer {
+	white-space: pre-wrap;
+	line-height: 10px;
+	position: relative;
+	margin-top: -20px;
+  margin-left: -20px;
+  min-width: 288px;
+  max-width: 100%;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#optioncontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+
+.editbutton {
+  background-image: url(../images/editbutton.png);
+  background-repeat: no-repeat;
+  float: left;
+  margin-top: -10px;
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
+}
+
+#deletebutton {
+  background-image: url(../images/deletebutton.png);
+  background-repeat: no-repeat;
+  float: right;
+  margin-top: -10px;
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 20px;
+  height: 20px;
+}
+
+#sharebutton {
+  background-image: url(../images/sharebutton.png);
+  background-repeat: no-repeat;
+  float: right;
+  margin-top: -10px;
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 20px;
+  height:20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+#footer {
+  background-color: white;
+  position: fixed;
+  overflow: auto;
+  display: flex;
+  border-top: 1px #696969;
+  justify-content: center;
+  align-items: center;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  max-width: 100%;
+  height: 55px;
+  z-index: 3;
+}
+
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+
+
+.search {
+	background-image: url(../images/search_two1.png);
+	background-repeat: no-repeat;
+	margin-top: 5px;
+	margin-left: 5px;
+	margin-right: 40px;
+	width: 35px;
+	height: 35px;
+}
+
+.searchbar {
+  background-image: url(../images/searchicon.png);
+  background-repeat: no-repeat;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
+  width: 75px;
+  height: 75px;
+}  
+
+.add {
+  background-image: url(../images/add.png);
+  background-repeat: no-repeat;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
+  width: 75px;
+  height: 75px;
+}
+
+
+
+.home {
+  background-image: url(../images/home_two1.png);
+  background-repeat: no-repeat;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
+  width: 35px;
+  height: 35px;
+}
+
+
+.planner {
+	background-image: url(../images/planner_two1.png);
+	background-repeat: no-repeat;
+	margin-left: 40px;
+  margin-right: 20px;
+	margin-top: 5px;
+	width: 35px;
+	height: 35px;
+}
+
+.share {
+	background-image: url(../images/share_two1.png);
+	background-repeat: no-repeat;
+	margin-left: 40px;
+  margin-right: 20px;
+	margin-top: 5px;
+	width: 35px;
+	height: 35px;
+}
+
+
