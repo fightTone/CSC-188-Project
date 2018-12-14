@@ -22,7 +22,7 @@
         <nav class="navbar" role="navigation" style="position: fixed; width: -webkit-fill-available;">
           <div class="container" style="padding: 5px;">
                 <!-- <a href="land1.html" type="button"><img src="../images/back.png"></a> -->
-                 <a style="margin-left: 50%; color: greenyellow; font-weight: bold;">Date: </a><input type="date" name="bday" style="margin-left: 1%; padding: 10px; border-radius: 5px; background-color: #333; color: greenyellow;">
+                 <a style="margin-left: 50%; color: greenyellow; font-weight: bold;">Date: </a><input id="dates" type="date" name="bday" style="margin-left: 1%; padding: 10px; border-radius: 5px; background-color: #333; color: greenyellow;">
           </div>
         </nav>
     </div>
@@ -230,6 +230,29 @@
               });
           }      
    
+          function date_func(story_id){
+            var date = $('#dates').val();
+            
+            alert(date)
+            console.log(date)
+            $.ajax({
+                  url: 'https://vast-woodland-99478.herokuapp.com/desiredate',
+                  dataType: 'json',
+                  type: 'post',
+                  contentType: 'application/json',
+                  data: JSON.stringify({"acc_id": acc_id, "token": token, "story_id": story_id, "date": date}),
+                  processData: false,
+                  success: function( data, textStatus, jQxhr ){
+                    alert('success');
+                      console.log(data);
+                  },
+                  error: function( jqXhr, textStatus, errorThrown ){
+                      console.log( errorThrown );
+                      alert("error")
+                  }
+              });
+          }
+
         $( "#submit" ).click(function() {
             if(edit == 'true'){
                     $.ajax({
@@ -258,7 +281,10 @@
                     success: function( data, textStatus, jQxhr ){
                         localStorage.setItem('title',data.title);
                         localStorage.setItem('text',data.text);
-                        location = "view_story2.html";
+                        fontss();
+                        uploadImage(rec_id)
+                        var theme = localStorage.getItem('themes');
+                        location = "view_story1.html";
 
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
@@ -281,8 +307,16 @@
                     processData: false,
                     success: function( data, textStatus, jQxhr ){
                         fontss();
-                        uploadImage(data.id)
-                        location = "theme2.html";
+                        date_func(data.id);
+                        uploadImage(data.id);
+                        var theme = localStorage.getItem('themes');
+                        if (theme == 'theme1'){
+                          location = 'theme1.html';
+                        }else if (theme == 'theme2'){
+                          location = "theme2.html";
+                        }else if(theme == 'theme3'){
+                          location = "theme3.html";
+                        }
 
                     },
                     error: function( jqXhr, textStatus, errorThrown ){

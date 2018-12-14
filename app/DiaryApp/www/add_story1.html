@@ -255,8 +255,9 @@
                     success: function( data, textStatus, jQxhr ){
                         localStorage.setItem('title',data.title);
                         localStorage.setItem('text',data.text);
+                        fontss();
+                        uploadImage(rec_id)
                         location = "view_story1.html";
-
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
                         console.log( errorThrown );
@@ -279,8 +280,14 @@
                     success: function( data, textStatus, jQxhr ){
                         fontss();
                         uploadImage(data.id)
-                        location = "theme1.html";
-
+                        var theme = localStorage.getItem('themes');
+                        if (theme == 'theme1'){
+                          location = 'theme1.html';
+                        }else if (theme == 'theme2'){
+                          location = "theme2.html";
+                        }else if(theme == 'theme3'){
+                          location = "theme3.html";
+                        }
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
                         console.log( errorThrown );
