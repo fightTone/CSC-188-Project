@@ -268,13 +268,14 @@
                 success: function( data, textStatus, jQxhr ){
                   alert(story_id);
                     console.log(data);
-                    if (data.date != ""){
-                      alert("success");
-                      document.getElementById("date").innerHTML = data.date;
+                    if ( data.date == null){
+                      
+                      document.getElementById("date").innerHTML = date;
                     }
                     else{
-                      alert("fail");
-                      document.getElementById("date").innerHTML = date;
+                      
+                      document.getElementById("date").innerHTML = data.date;
+                      
                     }
                     
                 },
