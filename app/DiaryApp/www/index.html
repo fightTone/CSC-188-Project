@@ -152,10 +152,31 @@
                 localStorage.setItem('acc_id',data.acc_id);
                 localStorage.setItem('token',data.token);
                 $('#response pre').html( JSON.stringify( data ) );
-                location = "theme1.html";
+                
 
-                alert(data.acc_id);
-                alert(data.token);
+                $.ajax({
+                    url: 'https://vast-woodland-99478.herokuapp.com/getfonts',
+                    dataType: 'json',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"acc_id": data.acc_id, "token": data.token}),
+                    processData: false,
+                    success: function( data, textStatus, jQxhr ){
+                        
+                        var theme =data.theme;
+                        if (theme == 'theme1'){
+                            location = 'theme1.html';
+                          }else if (theme == 'theme2'){
+                            location = "theme2.html";
+                          }else if(theme == 'theme3'){
+                            location = "theme3.html";
+                          }
+                    },
+                    error: function( jqXhr, textStatus, errorThrown ){
+                        console.log( "errorThrown" );
+                        
+                    }
+                }); 
                 
 
             },
