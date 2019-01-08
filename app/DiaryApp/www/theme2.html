@@ -41,15 +41,50 @@
                     <li><a href="#" class="settings"></a>
                         <ul>
                             <<li><a href="theme_setting.html" style="margin-left: 190%; margin-top: 40px; width: 100%;">Themes</a></li>
-                            <li><a href="#" style="margin-left: 190%; width: 100%;">Sort Ascending</a></li>
-                            <li><a href="#" style="margin-left: 190%; width: 100%;">Sort Descending</a></li>
+                            <li><a onclick="ascend()" style="margin-left: 190%; width: 100%;">Sort Ascending</a></li>
+                            <li><a onclick="descend()" style="margin-left: 190%; width: 100%;">Sort Descending</a></li>
                             <li class="divider"></li> 
                             <li><a onclick="logout()" style="margin-left: 190%; width: 100%;">Logout</a></li>
                             <script>
                                   function logout(){
-                                      localStorage.clear();
-                                      location = "index.html";
-                                    }
+                                          localStorage.clear();
+                                          location = "index.html";
+                                        }
+                                       function ascend() {
+                                            $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
+                                                var story='';
+                                                $('#storiescontainer').html('');
+                                                
+
+                                                $.each(data,function(key,value){
+                                                    var dateString = value.created_date;
+                                                    var datcut = new Date(dateString).toUTCString();
+                                                    var date_split = datcut.split(' ').slice(0, 4).join(' ');
+                                                    var time_split = datcut.split(' ').slice(4).join(' ');
+                                                    story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><center><h3>'+value.title+'</h3></center><div id="datetimecontainer"><ul style="padding-left: 0px;"><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
+                                                      
+                                                });
+                                                $('#storiescontainer').append(story);
+                                            });
+                                        } 
+
+                                       function descend() {
+                                            $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
+                                                var story='';
+                                                $('#storiescontainer').html('');
+                                                
+
+                                                $.each(data.reverse(),function(key,value){
+                                                    var dateString = value.created_date;
+                                                    var datcut = new Date(dateString).toUTCString();
+                                                    var date_split = datcut.split(' ').slice(0, 4).join(' ');
+                                                    var time_split = datcut.split(' ').slice(4).join(' ');
+                                                    story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><center><h3>'+value.title+'</h3></center><div id="datetimecontainer"><ul style="padding-left: 0px;"><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
+                                                      
+                                                });
+                                                $('#storiescontainer').append(story);
+                                            });
+                                        }
                             </script>
                         </ul>
                     </li>

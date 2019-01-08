@@ -164,12 +164,16 @@
                     success: function( data, textStatus, jQxhr ){
                         
                         var theme =data.theme;
+                        localStorage.setItem('themes',data.theme);
                         if (theme == 'theme1'){
                             location = 'theme1.html';
+
                           }else if (theme == 'theme2'){
                             location = "theme2.html";
                           }else if(theme == 'theme3'){
                             location = "theme3.html";
+                          }else {
+                            location = 'theme1.html';
                           }
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
