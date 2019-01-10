@@ -135,12 +135,12 @@
                 data: JSON.stringify({"acc_id": acc_id, "token": token, "title": $('#title').val(), "text": $('#text').val()}),
                 processData: false,
                 success: function( data, textStatus, jQxhr ){
-                    alert(data.msg);
+                    // alert(data.msg);
 
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     console.log( errorThrown );
-                    alert("error")
+                    // alert("error")
                 }
             });
         }

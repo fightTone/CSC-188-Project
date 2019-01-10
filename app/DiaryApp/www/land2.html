@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+    <link rel="stylesheet" type="text/css" href="css/custom.css" />
+    <title>My Stories</title>
+</head>
+
+<body>
+    <!-- Main Section -->
+    <div id="main">
+    <!-- Navbar section -->
+        <header>
+            <nav>
+                <a href="#" class="notification"><img src="../images/notification.png"></a>
+                <a href="#" class="logo"><img src="../images/newlogo.png"></a>
+                <a href="#" class="settings"></a>
+            </nav>
+        </header>     
+    <!-- Navbar section ends -->
+
+    <!-- Stories section -->
+        <div id="storiescontainer" style="padding-top: 80px; 
+  position: relative; padding-bottom: 80px;">
+        </div>  
+    </div> 
+    <!-- Stories section ends -->
+    <!-- Main section ends -->
+
+
+    <!-- Footbar section -->
+    <div id="footer">
+            <div class="container">
+                <div class="search">
+                </div>
+                <div onclick ="go_to_add()" class="add">
+                </div>
+                <script>
+                    function go_to_add(){
+                        location = "addStory2.html";
+                    }
+                </script>
+                
+                <div class="planner">
+                </div>
+                <div class="home">
+                </div>
+            </div>
+    </div>
+    <!-- Footbar section ends -->
+
+    <script src="js/jquery-3.3.1.min.js"></script>    
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    <script>
+        
+
+        var acc_id = localStorage.getItem('acc_id');
+        var token = localStorage.getItem('token');
+        console.log(acc_id);
+        console.log(token);
+        
+
+        // var url  = 'https://vast-woodland-99478.herokuapp.com/myStory';
+        // var xhr  = new XMLHttpRequest()
+        // xhr.open('POST', url, true)
+        // xhr.onload = function () {
+            
+        //     if (xhr.readyState == 4 && xhr.status == "200") {
+        //         var json = JSON.parse(xhr.responseText);
+        //         var story='';
+        //         $.each(json,function(key,value){
+        //             story += '<div id="storycontainer"><h1>'+json.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">September 16, 2018</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
+                      
+        //         });
+        //         $('#storiescontainer').append(story);
+        //     } else {
+        //         alert("error")
+        //     }
+        // }
+        // var json =JSON.stringify({ "token": token, "acc_id": acc_id  });
+        // xhr.send(json);
+
+        function pick_story(story_id){
+            $.ajax({
+                url: 'https://vast-woodland-99478.herokuapp.com/viewStory',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({"acc_id": acc_id, "token": token, "story_id": story_id}),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                    localStorage.setItem('title', data.title);
+                    localStorage.setItem('text', data.text);
+
+                    var dateString = data.created_date;
+                    var datcut = new Date(dateString).toUTCString();
+                    var date_split = datcut.split(' ').slice(0, 5).join(' ');
+
+                    localStorage.setItem('date', date_split);
+                    localStorage.setItem('story_id', story_id);
+                    location = 'view_story.html';
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                    
+                }
+            });
+
+        }
+
+
+
+
+        $(document).ready(function(){
+            $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
+                var story='';
+
+                $.each(data,function(key,value){
+                    var dateString = value.created_date;
+                    var datcut = new Date(dateString).toUTCString();
+                    var date_split = datcut.split(' ').slice(0, 4).join(' ');
+                    var time_split = datcut.split(' ').slice(5).join(' ');
+                    story += '<div onclick = "pick_story('+value.rec_id+')" class = "storycontainer"><div class="title"><h1>'+value.title+'</h1></div><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">'+time_split+'</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
+                      
+                });
+                $('#storiescontainer').append(story);
+            });
+        });
+
+
+
+
+        //  $.ajax({
+        //     url: 'https://vast-woodland-99478.herokuapp.com/myStory',
+        //     dataType: 'json',
+        //     type: 'post',
+        //     contentType: 'application/json',
+        //     data: JSON.stringify({"acc_id": acc_id,"token": token}),
+        //     processData: false,
+        //     success: function( data, textStatus, jQxhr ){
+
+        //         alert(data.data)
+        //     // $.each(data,function(key,value){
+        //     //     alert(textStatus)
+        //     //         story += '<div id="storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">September 16, 2018</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
+                      
+        //     //     });
+        //     //     $('#storiescontainer').append(story);
+                
+                
+
+        //     },
+        //     error: function( jqXhr, textStatus, errorThrown ){
+        //         console.log( errorThrown );
+        //         alert("error")
+        //     }
+        // });
+    
+    </script>
+    <!-- <script type="text/javascript">
+        $(window).on("scroll", function() {
+            if($(window).scrollTop()) {
+                $('header').addClass('gray');
+                $('.settings').css({
+                    "background-image": "url(../images/settingsbuttonwhite.png)"
+                });
+            }
+            else {
+                $('header').removeClass('gray');
+                $('.settings').css({
+                    "background-image": "url(../images/settingsbutton.png)"
+                });
+            }
+        })
+    </script> -->
+
+</body>
+
+</html>

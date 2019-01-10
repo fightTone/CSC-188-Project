@@ -125,8 +125,8 @@
                 localStorage.setItem('acc_id',data.acc_id);
                 localStorage.setItem('token',data.token);
                 $('#response pre').html( JSON.stringify( data ) );
-                alert(data.acc_id);
-                alert(data.token);
+                // alert(data.acc_id);
+                // alert(data.token);
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log( errorThrown );
@@ -151,15 +151,15 @@
                 localStorage.setItem('acc_id',data.acc_id);
                 localStorage.setItem('token',data.token);
                 $('#response pre').html( JSON.stringify( data ) );
-                alert(data.acc_id);
-                alert(data.token);
+                // alert(data.acc_id);
+                // alert(data.token);
                 location = "land1.html";
                 
 
             },
             error: function( jqXhr, textStatus, errorThrown ){
                 console.log( errorThrown );
-                alert("error")
+                // alert("error")
             }
         });
 

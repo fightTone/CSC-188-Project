@@ -191,9 +191,21 @@
             <nav class="navbar navbar-inverse" role="navigation" style=" position: fixed; width: -webkit-fill-available;>
               <div class="container">
                   
-                    <a href="theme3.html" type="button" class="navbar-btn btn btn-gradient-red" style="margin-left: 8px;">< Back</a>
+                    <a onclick="themechecker()" type="button" class="navbar-btn btn btn-gradient-red" style="margin-left: 8px;">< Back</a>
                     <b id="date" style="color: aquamarine;"></b>
-
+                    <script>
+                          function themechecker(){
+                            
+                            var theme = localStorage.getItem('themes');
+                             if (theme == 'theme1'){
+                                    location = 'theme1.html';
+                                  }else if (theme == 'theme2'){
+                                    location = "theme2.html";
+                                  }else if(theme == 'theme3'){
+                                    location = "theme3.html";
+                                  }
+                          }
+                    </script> 
               </div>
             </nav>
           </div>
@@ -224,8 +236,12 @@
 
     </div>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script>
+ <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+ <script>
         var acc_id = localStorage.getItem('acc_id');
         var token = localStorage.getItem('token');
         var story_id = localStorage.getItem('story_id');
@@ -240,7 +256,35 @@
         $(document).ready(function(){ 
             document.getElementById("title").innerHTML = title;
             document.getElementById("text").innerHTML = text;
-            document.getElementById("date").innerHTML = date;
+            
+          
+            $.ajax({
+                url: 'https://vast-woodland-99478.herokuapp.com/dateDisplay',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({"acc_id": acc_id, "token": token, "story_id": story_id}),
+                processData: false,
+                success: function( data, textStatus, jQxhr ){
+                  // alert(story_id);
+                    console.log(data);
+                    if ( data.date == null){
+                      
+                      document.getElementById("date").innerHTML = date;
+                    }
+                    else{
+                      
+                      document.getElementById("date").innerHTML = data.date;
+                      
+                    }
+                    
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( "errorThrown" );
+                    // alert("xxxxx")
+                }
+            }); 
+        
             
             $.ajax({
                 url: 'https://vast-woodland-99478.herokuapp.com/my_pics',
@@ -261,6 +305,10 @@
             
         });
 
+
+
+        
+
         function delete_story(){
             var result = confirm("Are you sure you want to delete?");
             if (result) {
@@ -272,12 +320,12 @@
                     data: JSON.stringify({"acc_id": acc_id, "token": token, "rec_id": story_id}),
                     processData: false,
                     success: function( data, textStatus, jQxhr ){
-                        alert("DELETED");
+                        // alert("DELETED");
                         location = 'theme3.html';
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
                         console.log( "errorThrown" );
-                        alert("xxxxx")
+                        // alert("xxxxx")
                     }
                 }); 
             }
@@ -289,6 +337,29 @@
             localStorage.setItem('edit_text', text);
             location = "add_story3.html";
         }
+
+        $(document).ready(function(){
+             $.ajax({
+                    url: 'https://vast-woodland-99478.herokuapp.com/getfonts',
+                    dataType: 'json',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({"acc_id": acc_id, "token": token}),
+                    processData: false,
+                    success: function( data, textStatus, jQxhr ){
+                        
+                        var str =data.font
+                        var arr = str.split(',')
+                        document.getElementById("text").style["color"] = arr[0];
+                        document.getElementById("text").style["font-size"] = arr[1];
+                        document.getElementById("text").style["font-family"] = arr[2];
+                    },
+                    error: function( jqXhr, textStatus, errorThrown ){
+                        console.log( "errorThrown" );
+                        
+                    }
+                }); 
+        });
     </script>
 
 </body>

@@ -11,38 +11,80 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
     <link rel="stylesheet" type="text/css" href="css/custom.css" />
-     <style>
-        ul {list-style: none;padding: 0px;margin: 0px;}
-        ul li {display: block; border: none;}
-        li ul {display: none;}
-      ul li a {display: block; text-decoration: none;
-               white-space: nowrap;color:   white;}
-      ul li a:hover {background-image: url(../images/settings_two1.png); background-repeat: no-repeat;}
-     
-      li:hover ul {display: block; position: absolute;}
-     /* li:hover li {float: none;}*/
-      li:hover ul li a {padding: 5px;background:    #708090; font-size: 18px; font-size: 4vw; font-family: "Century Gothic";} 
-      /*li:hover li a:hover {background: white;}*/
-      #drop-nav li ul li {border-top: 0px;}
-    </style>    
+             
     <title>My Stories</title>
 </head>
+<style>
+    ul {list-style: none;padding: 0px;margin: 0px;}
+    ul li {display: block; border: none;}
+    li ul {display: none;}
+    ul li a {display: block; text-decoration: none; white-space: nowrap; color: white;}
+    ul li a:hover {background-image: url(../images/settingsbutton.png); background-repeat: no-repeat;}
+     
+    li:hover ul {display: block; position: absolute;}
+      /*li:hover li {float: none;}*/
+    li:hover ul li a {padding: 5px; background:#708090; font-size: 18px; font-size: 4vw; font-family: "Century Gothic";} 
+      li:hover li a:hover {background: white;}
+      #drop-nav li ul li {border-top: 0px;}
+</style>
 
 <body>
     <!-- Main Section -->
     <div id="main">
     <!-- Navbar section -->
         <header>
+            <a href="#" class="logo"><img src="../images/newlogo.png"></a>
             <nav>
-                <a href="#" class="notification"><img src="../images/notification.png"></a>
-                <a href="#" class="logo"><img src="../images/newlogo.png"></a>
-                <ul id="drop-nav">
-                    <li><a href="#" class="settings"></a>
+                <!-- <a href="#" class="notification"><img src="../images/notification.png"></a> -->
+                <ul id="dropdown dropdown-toggle">
+                    <li><a class="settings"></a>
                         <ul>
-                            <li><a href="theme_setting.html" style="margin-left: 345px; margin-top: 60px;">Themes</a></li>
-                            <li><a href="theme_setting.html" style="margin-left: 345px;">Fonts</a></li>
-                            <li><a href="#" style="margin-left: 345px;">Setting</a></li>
-                            <li><a href="#" style="margin-left: 345px;">Setting</a></li>
+                            <li><a href="theme_setting.html" style="margin-left: 190%; margin-top: 60px; width: 100%;">Themes</a></li>
+                            <li><a onclick="ascend()" style="margin-left: 190%; width: 100%;">Sort Ascending</a></li>
+                            <li><a onclick="descend()" style="margin-left: 190%; width: 100%;">Sort Descending</a></li>
+                            <li class="divider"></li> 
+                            <li><a onclick="logout()" style="margin-left: 190%; width: 100%;">Logout</a></li>
+                                <script>
+                                      function logout(){
+                                          localStorage.clear();
+                                          location = "index.html";
+                                        }
+                                       function ascend() {
+                                            $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
+                                                var story='';
+                                                $('#storiescontainer').html('');
+                                                
+
+                                                $.each(data,function(key,value){
+                                                    var dateString = value.created_date;
+                                                    var datcut = new Date(dateString).toUTCString();
+                                                    var date_split = datcut.split(' ').slice(0, 4).join(' ');
+                                                    var time_split = datcut.split(' ').slice(4).join(' ');
+                                                    story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><center><h3>'+value.title+'</h3></center><div id="datetimecontainer"><ul style="padding-left: 0px;"><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
+                                                      
+                                                });
+                                                $('#storiescontainer').append(story);
+                                            });
+                                        } 
+
+                                       function descend() {
+                                            $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
+                                                var story='';
+                                                $('#storiescontainer').html('');
+                                                
+
+                                                $.each(data.reverse(),function(key,value){
+                                                    var dateString = value.created_date;
+                                                    var datcut = new Date(dateString).toUTCString();
+                                                    var date_split = datcut.split(' ').slice(0, 4).join(' ');
+                                                    var time_split = datcut.split(' ').slice(4).join(' ');
+                                                    story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><center><h3>'+value.title+'</h3></center><div id="datetimecontainer"><ul style="padding-left: 0px;"><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
+                                                      
+                                                });
+                                                $('#storiescontainer').append(story);
+                                            });
+                                        } 
+                                </script>
                         </ul>
                     </li>
                 </ul>
@@ -51,35 +93,32 @@
     <!-- Navbar section ends -->
 
     <!-- Stories section -->
-        <div id="storiescontainer" style="padding-top: 80px; 
-  position: relative; padding-bottom: 80px;">
-        </div>  
-        <div onclick="go_to_add()" class="add" style="position: fixed; bottom: 10%; right: 0%; z-index: 20;">
-        </div>
+        <div id="storiescontainer" style="padding-top: 80px; position: relative; padding-bottom: 80px;"></div>
+        <div onclick="openSearch()" class="searchbar" style="position: fixed; bottom: 20%; right: 0%; z-index: 20;"></div>
+        <div onclick="go_to_add()" class="add" style="position: fixed; bottom: 5%; right: 0%; z-index: 20;"></div>
         <script>
-                    function go_to_add(){
-                        try{
-                            localStorage.setItem('edit','false');
-                        }catch{
-                            console.log("error");
-                        }finally{
-                            location = "add_story1.html";
-                        }
-                    }
-                </script>
-
-    </div> 
+            function go_to_add(){
+                try{
+                    localStorage.setItem('edit','false');
+                }catch{
+                    console.log("error");
+                }finally{
+                    location = "add_story2.html";
+                }
+            }
+        </script>
+    </div>
     <!-- Stories section ends -->
     <!-- Main section ends -->
 
 
     <!-- Footbar section -->
-    <div id="footer">
+   <!--  <div id="footer">
             <div class="container">
                 <div class="search">
                 </div>
                 <div class="home">
-                </div>
+                </div> -->
                 <!-- <div onclick="go_to_add()" class="home">
                 </div>
                 <script>
@@ -94,17 +133,17 @@
                     }
                 </script> -->
                 
-                <div class="planner">
+       <!--          <div class="planner">
                 </div>
                 <div class="share">
 
                 </div>
     
             </div>
-    </div>
+    </div> -->
     <!-- Footbar section ends -->
 
-    <script src="js/jquery-3.3.1.min.js"></script>    
+   <script src="js/jquery-3.3.1.min.js"></script>    
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
@@ -117,7 +156,27 @@
         var token = localStorage.getItem('token');
         console.log(acc_id);
         console.log(token);
+        
 
+        // var url  = 'https://vast-woodland-99478.herokuapp.com/myStory';
+        // var xhr  = new XMLHttpRequest()
+        // xhr.open('POST', url, true)
+        // xhr.onload = function () {
+            
+        //     if (xhr.readyState == 4 && xhr.status == "200") {
+        //         var json = JSON.parse(xhr.responseText);
+        //         var story='';
+        //         $.each(json,function(key,value){
+        //             story += '<div id="storycontainer"><h1>'+json.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">September 16, 2018</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
+                      
+        //         });
+        //         $('#storiescontainer').append(story);
+        //     } else {
+        //         alert("error")
+        //     }
+        // }
+        // var json =JSON.stringify({ "token": token, "acc_id": acc_id  });
+        // xhr.send(json);
         function pick_story(story_id){
             $.ajax({
                 url: 'https://vast-woodland-99478.herokuapp.com/viewStory',
@@ -136,7 +195,7 @@
 
                     localStorage.setItem('date', date_split);
                     localStorage.setItem('story_id', story_id);
-                    location = 'view_story1.html';
+                    location = 'view_story3.html';
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
                     console.log( errorThrown );
@@ -145,87 +204,137 @@
             });
 
         }
-        
+
+
 
         $(document).ready(function(){
-            $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
-                var story='';
+            
+                    $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
+                        var story='';
+                        $('#storiescontainer').html('');
+                        
 
-                $.each(data,function(key,value){
-                    var dateString = value.created_date;
-                    var datcut = new Date(dateString).toUTCString();
-                    var date_split = datcut.split(' ').slice(0, 4).join(' ');
-                    var time_split = datcut.split(' ').slice(4).join(' ');
-                    story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul style="padding-left: 0px;"><h2 style="color: gray;">Date Created:</h2><h2 style="color: gray; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2 style="color: gray;">Time Created:</h2> <h2 style="color:gray; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
-                      
-                });
-                $('#storiescontainer').append(story);
+                        $.each(data,function(key,value){
+                            var dateString = value.created_date;
+                            var datcut = new Date(dateString).toUTCString();
+                            var date_split = datcut.split(' ').slice(0, 4).join(' ');
+                            var time_split = datcut.split(' ').slice(4).join(' ');
+                            story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><center><h3>'+value.title+'</h3></center><div id="datetimecontainer"><ul style="padding-left: 0px;"><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
+                              
+                        });
+                        $('#storiescontainer').append(story);
+                    });
+            
             });
-        });
-        
 
-        // $(document).ready(function(){
-        //     $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
-        //         var story='';
 
-        //         $.each(data,function(key,value){
-                    
-        //             story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+new Date(value.created_date)+'</h2> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">10:32 pm</h2></ul></div></div>';
+        //  $.ajax({
+        //     url: 'https://vast-woodland-99478.herokuapp.com/myStory',
+        //     dataType: 'json',
+        //     type: 'post',
+        //     contentType: 'application/json',
+        //     data: JSON.stringify({"acc_id": acc_id,"token": token}),
+        //     processData: false,
+        //     success: function( data, textStatus, jQxhr ){
+
+        //         alert(data.data)
+        //     // $.each(data,function(key,value){
+        //     //     alert(textStatus)
+        //     //         story += '<div id="storycontainer"><h1>'+value.title+'</h1><div id="datetimecontainer"><ul><h2>Date Created:</h2><h2 style="color:    #808080; font-style: italic; ">September 16, 2018</h2> <h2>Time Created:</h2> <h2 style="color:    #808080; font-style: italic;">10:32 pm</h2></ul></div><div id="optioncontainer">    <div id="editbutton"></div><div id="deletebutton"></div><div id="sharebutton"></div></div></div>';
                       
-        //         });
-        //         $('#storiescontainer').append(story);
-        //     });
+        //     //     });
+        //     //     $('#storiescontainer').append(story);
+                
+                
+
+        //     },
+        //     error: function( jqXhr, textStatus, errorThrown ){
+        //         console.log( errorThrown );
+        //         alert("error")
+        //     }
         // });
 
+function openSearch() {
+  document.getElementById("myOverlay").style.display = "block";
+}
 
-    
-    </script>
-     <script>
-        var acc_id = localStorage.getItem('acc_id');
-        var token = localStorage.getItem('token');
-        var story_id = localStorage.getItem('story_id');
-        var title = localStorage.getItem('title');
-        var text = localStorage.getItem('text');
-        var date = localStorage.getItem('date');
-        
+function closeSearch() {
+  document.getElementById("myOverlay").style.display = "none";
+}
 
-        $(document).ready(function(){ 
-            document.getElementById("title").innerHTML = title;
-            document.getElementById("text").innerHTML = text;
-            document.getElementById("date").innerHTML = date;
+function searching(){
             
-        });
-
-        function delete_story(){
-            var result = confirm("Are you sure you want to delete?");
-            if (result) {
+            var search = $('#searched').val();
+            
+            if(search != ""){
+                
                 $.ajax({
-                    url: 'https://vast-woodland-99478.herokuapp.com/deleteStory',
+                    url: 'https://vast-woodland-99478.herokuapp.com/searchStory',
                     dataType: 'json',
                     type: 'post',
                     contentType: 'application/json',
-                    data: JSON.stringify({"acc_id": acc_id, "token": token, "rec_id": story_id}),
+                    data: JSON.stringify({"acc_id": acc_id, "token": token, "search": search}),
                     processData: false,
                     success: function( data, textStatus, jQxhr ){
-                        alert("DELETED");
-                        location = 'theme1.html';
+                        console.log(data);
+                        $('#storiescontainer').html('');
+                        var story = '';
+                        $.each(data,function(key,value){
+
+                            console.log(value);
+                            // alert(value.title);
+                            var dateString = value.created_date;
+                            var datcut = new Date(dateString).toUTCString();
+                            var date_split = datcut.split(' ').slice(0, 4).join(' ');
+                            var time_split = datcut.split(' ').slice(5).join(' ');
+                            story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><center><h3>'+value.title+'</h3></center><div id="datetimecontainer"><ul style="padding-left: 0px;"><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
+                            closeSearch();
+                              
+                        });
+                        $('#storiescontainer').append(story);
                     },
                     error: function( jqXhr, textStatus, errorThrown ){
-                        console.log( "errorThrown" );
-                        alert("xxxxx")
-                    }
-                }); 
+                        console.log( errorThrown );
+                         // alert("error")
+                   }
+                });
+            }else{
+                $(document).ready(function(){
+            
+                    $.getJSON("https://vast-woodland-99478.herokuapp.com/myStory/"+acc_id+"/"+token,function(data){
+                        var story='';
+                        $('#storiescontainer').html('');
+                        $.each(data,function(key,value){
+                            var dateString = value.created_date;
+                            var datcut = new Date(dateString).toUTCString();
+                            var date_split = datcut.split(' ').slice(0, 4).join(' ');
+                            var time_split = datcut.split(' ').slice(4).join(' ');
+                            story += '<div onclick = "pick_story('+value.rec_id+')" class="storycontainer"><center><h3>'+value.title+'</h3></center><div id="datetimecontainer"><ul style="padding-left: 0px;"><h2>Date Created:</h2><h2 style="color: #050505; font-style: italic; font-size: 10px;">'+date_split+'</h2><br> <h2>Time Created:</h2> <h2 style="color:#050505; font-style: italic; font-size: 10px;">'+time_split+'</h2></ul></div></div>';
+                              
+                        });
+                        $('#storiescontainer').append(story);
+                    });
+            
+                });
+                closeSearch();
             }
         }
 
-        function edit_story(){
-            localStorage.setItem('edit', 'true');
-            localStorage.setItem('edit_title', title);
-            localStorage.setItem('edit_text', text);
-            location = "addstory2.html";
-        }
+
+
+        
     </script>
 
 </body>
+
+<div id="myOverlay" class="overlay">
+  <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+  <div class="overlay-content">
+    
+      <input type="text" id="searched" placeholder="Search.." name="search">
+      <button onclick="searching()" type="submit" style="background-image: url(images/search.png); background-repeat: no-repeat;"></button>
+  
+  </div>
+</div>
 
 </html>

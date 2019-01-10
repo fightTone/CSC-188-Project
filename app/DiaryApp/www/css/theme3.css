@@ -19,6 +19,10 @@ body {
 
 
 
+h3 {
+  margin-top: 7px;
+  margin-bottom: 4px;
+}
 
 header {
   width: 100%;
@@ -90,6 +94,8 @@ header.gray {
   margin-left: 25px;
   margin-right: 25px;
   margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   top: 100px;
   left: 50%;
   right:50%;
@@ -242,14 +248,24 @@ header.gray {
 	height: 35px;
 }
 
-.add {
-	background-image: url(../images/add.png);
-	background-repeat: no-repeat;
-	margin-left: 20px;
+.searchbar {
+  background-image: url(../images/searchicon.png);
+  background-repeat: no-repeat;
+  margin-left: 20px;
   margin-right: 20px;
-	margin-top: 5px;
-	width: 75px;
-	height: 75px;
+  margin-top: 5px;
+  width: 75px;
+  height: 75px;
+}  
+
+.add {
+  background-image: url(../images/add.png);
+  background-repeat: no-repeat;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
+  width: 75px;
+  height: 75px;
 }
 
 

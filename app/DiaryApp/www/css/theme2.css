@@ -18,6 +18,10 @@ body {
 }
 
 
+h3 {
+  margin-top: 7px;
+  margin-bottom: 4px;
+}
 
 
 header {
@@ -55,16 +59,15 @@ header.gray {
 
 
 .logo {
- 	background-repeat: no-repeat;
- 	float: left;
+  background-repeat: no-repeat;
+  float: left;
   margin-top: 15px;
-  margin-left: 25%;
+  margin-left: 5%;
   margin-right: 25%
   padding: 15px;
- 	width :113px;
- 	height: 31px;
+  width :113px;
+  height: 31px;
 }
-
 
 
 .settings {
@@ -87,10 +90,11 @@ header.gray {
   /*background-color: rgb( 214, 214, 214 );*/
   background-color: white;
   background-image: url(../images/star_container3.png);
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: 25px;
+  margin-right: 25px;
   margin-bottom: 5px;
-  padding-bottom: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   top: 100px;
   left: 50%;
   right:50%;
@@ -148,7 +152,7 @@ header.gray {
 	white-space: pre-wrap;
 	line-height: 10px;
 	position: relative;
-	margin-top: -20px;
+	margin-top: 10px;
   margin-left: -20px;
   min-width: 288px;
   max-width: 100%;
@@ -243,6 +247,16 @@ header.gray {
 	height: 35px;
 }
 
+.searchbar {
+  background-image: url(../images/searchicon.png);
+  background-repeat: no-repeat;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 5px;
+  width: 75px;
+  height: 75px;
+}  
+
 .add {
 	background-image: url(../images/add.png);
 	background-repeat: no-repeat;
@@ -286,4 +300,83 @@ header.gray {
 	height: 35px;
 }
 
+body {
+  font-family: Arial;
+}
 
+* {
+  box-sizing: border-box;
+}
+
+.openBtn {
+  background: #f1f1f1;
+  border: none;
+  padding: 10px 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.openBtn:hover {
+  background: #bbb;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+}
+
+.overlay-content {
+  position: relative;
+  top: 46%;
+  width: 80%;
+  text-align: center;
+  margin-top: 30px;
+  margin: auto;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 10%;
+  right: 5%
+  font-size: 60px;
+  cursor: pointer;
+  color: white;
+}
+
+.overlay .closebtn:hover {
+  color: #ccc;
+}
+
+.overlay input[type=text] {
+  padding: 15px;
+  font-size: 17px;
+  border: none;
+  float: left;
+  width: 80%;
+  background: white;
+}
+
+.overlay input[type=text]:hover {
+  background: #f1f1f1;
+}
+
+.overlay button {
+  float: left;
+  width: 15%;
+  padding: 25px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.overlay button:hover {
+  background: #bbb;
+}

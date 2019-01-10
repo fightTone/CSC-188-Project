@@ -11,14 +11,14 @@
 
 		<div class="themes">
 			<div class="theme_container">
-				<div class="theme1">
-					<li><a href="theme1.html">Default</a></li>
+				<div id="theme1" onclick="theme_saver('theme1');" value="theme1" class="theme1">
+					<li><a onclick="theme_saver('theme1');">Default</a></li>
 				</div>
-				<div class="theme2">
-					<li><a href="theme2.html">Theme 1</a></li>
+				<div id="theme2" onclick="theme_saver('theme2');" onclick="theme_saver(''); value = "theme2" class="theme2">
+					<li><a onclick="theme_saver('theme2');">Theme 1</a></li>
 				</div>
-				<div class="theme3">
-					<li><a href="theme3.html">Theme 2</a></li>
+				<div onclick="theme_saver('theme3');" id="theme3" value="theme3" class="theme3">
+					<li><a onclick="theme_saver('theme3');">Theme 2</a></li>
 				</div>
 				
 			</div>
@@ -26,3 +26,37 @@
 	</div>	
 </body>
 </html>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+	var acc_id = localStorage.getItem('acc_id');
+    var token = localStorage.getItem('token');
+    
+
+	function theme_saver(theme) {
+		$.ajax({
+	        url: 'https://vast-woodland-99478.herokuapp.com/themes',
+	        dataType: 'json',
+	        type: 'post',
+	        contentType: 'application/json',
+	        data: JSON.stringify({"acc_id": acc_id, "token": token, "theme": theme}),
+	        processData: false,
+	        success: function( data, textStatus, jQxhr ){          
+	            console.log(data.theme);
+	            localStorage.setItem('themes',data.theme);
+	            if (theme == 'theme1'){
+	            	location = 'theme1.html';
+	            }else if (theme == 'theme2'){
+	            	location = "theme2.html";
+	            }else if(theme == 'theme3'){
+	            	location = "theme3.html";
+	            }
+	        },
+	        error: function( jqXhr, textStatus, errorThrown ){
+	            console.log( errorThrown );
+	            // alert("error")
+	        }
+	    });
+	}
+
+</script>
